@@ -1,0 +1,31 @@
+"""Calculation service that aggregates deterministic metrics."""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import List
+
+from hybrid_agent.calculators.metric_builder import MetricBuilder
+from hybrid_agent.models import CompanyQuarter, Metric
+from hybrid_agent.parse.normalize import Normalizer
+
+
+@dataclass
+class CalculationResult:
+    ticker: str
+    period: str
+    metrics: List[Metric]
+
+
+class CalculationService:
+    def __init__(self, normalizer: Normalizer | None = None, builder: MetricBuilder | None = None) -> None:
+        self._normalizer = normalizer or Normalizer()
+        self._builder = builder or MetricBuilder()
+
+    def calculate(self, quarter: CompanyQuarter) -> CalculationResult:
+        normalized = self._normalizer.normalize_quarter(quarter)
+        metrics = self._builder.build(normalized)
+        return CalculationResult(
+            ticker=normalized.ticker,
+            period=normalized.period,
+            metrics=metrics,
+        )
