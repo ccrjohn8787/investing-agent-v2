@@ -2,3 +2,5 @@ __pycache__/
 .venv/
 data/
 uber_output.json
+.env
+env/.env
