@@ -54,3 +54,36 @@ class OpenAIClient(LLMClient):
         if data.get("choices"):
             return data["choices"][0]["message"]["content"]
         raise ValueError("Unexpected OpenAI response format")
+
+
+class GrokClient(LLMClient):
+    """Client for xAI Grok API using the OpenAI-compatible interface."""
+
+    def __init__(self, model: str = "grok-beta", base_url: str = "https://api.x.ai/v1") -> None:
+        api_key = os.getenv("GROK_API_KEY")
+        if not api_key:
+            raise RuntimeError("GROK_API_KEY is not set")
+        self._api_key = api_key
+        self._model = model
+        self._base_url = base_url.rstrip("/")
+
+    def generate(self, prompt: str) -> str:
+        endpoint = f"{self._base_url}/messages"
+        headers = {
+            "Authorization": f"Bearer {self._api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": self._model,
+            "messages": [
+                {"role": "user", "content": prompt},
+            ],
+        }
+        response = requests.post(endpoint, headers=headers, json=payload, timeout=60)
+        response.raise_for_status()
+        data = response.json()
+        if data.get("choices"):
+            return data["choices"][0]["message"]["content"]
+        if data.get("output"):
+            return "".join(segment.get("content", "") for segment in data["output"])
+        raise ValueError("Unexpected Grok response format")

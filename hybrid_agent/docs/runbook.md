@@ -54,3 +54,12 @@ After running the script you can view the stored dossier via:
 curl http://localhost:8000/reports/UBER
 ```
 and load the HTML dashboard at `http://localhost:8000/dashboard` once the FastAPI server is running.
+
+### Optional LLM integration (Grok / OpenAI)
+1. Copy `.env.example` to `.env` and populate one of the keys:
+   ```
+   GROK_API_KEY=sk-...
+   # or
+   OPENAI_API_KEY=sk-...
+   ```
+2. Rerun the script or API endpoint; the agent will automatically load `.env` (via `python-dotenv`) and prefer Grok, falling back to OpenAI if configured, or to deterministic summaries otherwise.

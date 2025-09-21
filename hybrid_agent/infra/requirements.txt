@@ -10,5 +10,6 @@ beautifulsoup4
 lxml
 html5lib
 scikit-learn
+python-dotenv
 requests
 httpx

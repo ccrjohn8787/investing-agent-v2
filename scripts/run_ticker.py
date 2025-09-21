@@ -4,16 +4,22 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 from typing import Optional, Dict
 
 import sys
 
+from dotenv import load_dotenv
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+load_dotenv()
+
 from hybrid_agent.agents import AnalystAgent, VerifierAgent
+from hybrid_agent.agents.llm import LLMClient, GrokClient, OpenAIClient
 from hybrid_agent.calculate import CalculationService
 from hybrid_agent.ingest.edgar import EDGARClient
 from hybrid_agent.ingest.service import IngestService
@@ -125,7 +131,14 @@ def main() -> None:
         {"gate": "Final Decision Gate", "result": "Pass"},
     ]
 
-    analyst = AnalystAgent(calculation_service=calc_service, retriever=retriever)
+    llm_client = _build_llm_client()
+    analyst_kwargs = {
+        "calculation_service": calc_service,
+        "retriever": retriever,
+    }
+    if llm_client is not None:
+        analyst_kwargs["llm_client"] = llm_client
+    analyst = AnalystAgent(**analyst_kwargs)
     analyst_result = analyst.analyze(ticker, "2024-09-20", quarter, [document])
     analyst_result["stage_0"] = stage0_rows
     provenance_entries = [
@@ -219,6 +232,17 @@ def _merge_statement_data(quarter: CompanyQuarter, statements) -> CompanyQuarter
     payload["balance_sheet"] = balance
     payload["cash_flow"] = cash_flow
     return CompanyQuarter(**payload)
+
+
+def _build_llm_client() -> Optional[LLMClient]:
+    try:
+        if os.getenv("GROK_API_KEY"):
+            return GrokClient()
+        if os.getenv("OPENAI_API_KEY"):
+            return OpenAIClient()
+    except RuntimeError:
+        return None
+    return None
 
 
 if __name__ == "__main__":
