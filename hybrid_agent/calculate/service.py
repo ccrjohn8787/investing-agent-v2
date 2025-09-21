@@ -14,6 +14,8 @@ class CalculationResult:
     ticker: str
     period: str
     metrics: List[Metric]
+    quarter: CompanyQuarter
+    history: List[CompanyQuarter]
 
 
 class CalculationService:
@@ -22,10 +24,16 @@ class CalculationService:
         self._builder = builder or MetricBuilder()
 
     def calculate(self, quarter: CompanyQuarter, history: Optional[List[CompanyQuarter]] = None) -> CalculationResult:
-        normalized = self._normalizer.normalize_quarter(quarter, history or [])
+        history = history or []
+        normalized_history = [
+            self._normalizer.normalize_quarter(past, []) for past in history
+        ]
+        normalized = self._normalizer.normalize_quarter(quarter, normalized_history)
         metrics = self._builder.build(normalized)
         return CalculationResult(
             ticker=normalized.ticker,
             period=normalized.period,
             metrics=metrics,
+            quarter=normalized,
+            history=normalized_history,
         )

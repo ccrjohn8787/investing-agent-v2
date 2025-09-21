@@ -7,7 +7,8 @@ from typing import Dict, Iterable, List, Optional
 
 from hybrid_agent.calculate.service import CalculationService
 from hybrid_agent.calculators.metric_builder import MetricBuilder
-from hybrid_agent.models import CompanyQuarter, Document, Metric
+from hybrid_agent.gates import StageZeroBuilder, determine_path
+from hybrid_agent.models import CompanyQuarter, Document, Metric, GateRow
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever
 from .llm import LLMClient, DummyLLMClient
 
@@ -34,6 +35,7 @@ class AnalystAgent:
     ) -> None:
         self._calc_service = calculation_service or CalculationService()
         self._retriever = retriever or Retriever(InMemoryDocumentIndex())
+        self._stage0_builder = StageZeroBuilder()
         if llm_client is not None:
             self._llm_client = llm_client
         elif llm is not None:
@@ -58,14 +60,25 @@ class AnalystAgent:
         today: str,
         quarter: CompanyQuarter,
         documents: Iterable[Document],
+        history: Optional[List[CompanyQuarter]] = None,
     ) -> Dict[str, object]:
-        calc_result = self._calc_service.calculate(quarter)
-        path = self._determine_path(calc_result.metrics, quarter)
+        history = history or []
+        calc_result = self._calc_service.calculate(quarter, history)
+        normalized_quarter = calc_result.quarter
+        normalized_history = calc_result.history
+        path_decision = determine_path(normalized_quarter, normalized_history)
+        path = path_decision.path
         metrics_summary = self._summarize_metrics(calc_result.metrics)
         prompt = self.build_prompt(ticker, today, path, metrics_summary)
 
         llm_payload = self._invoke_llm(prompt)
-        fallback = self._fallback_payload(path, calc_result.metrics)
+        stage0_rows = self._stage0_builder.build(
+            calc_result.metrics,
+            normalized_quarter.metadata,
+            path,
+        )
+        stage0_payload = {key: [row.model_dump() for row in rows] for key, rows in stage0_rows.items()}
+        fallback = self._fallback_payload(path, calc_result.metrics, stage0_payload)
 
         merged = {
             "output_0": llm_payload.get("output_0") or fallback["output_0"],
@@ -74,6 +87,7 @@ class AnalystAgent:
             "provenance": llm_payload.get("provenance") or [],
             "reverse_dcf": llm_payload.get("reverse_dcf") or fallback["reverse_dcf"],
             "final_gate": llm_payload.get("final_gate") or fallback["final_gate"],
+            "path_reasons": path_decision.reasons,
         }
 
         evidence = self._collect_evidence(documents)
@@ -96,18 +110,6 @@ class AnalystAgent:
             parts.append(f"{metric.name}: {metric.value}")
         return "\n".join(parts)
 
-    def _determine_path(self, metrics: List[Metric], quarter: CompanyQuarter) -> str:
-        metric_map = {metric.name: metric for metric in metrics}
-        fcf_metric = metric_map.get("FCF")
-        fcf_positive = isinstance(fcf_metric.value, (int, float)) and fcf_metric.value > 0
-        op_inc = quarter.income_stmt.get("EBIT", 0.0)
-        leverage_metric = metric_map.get("Net Debt / EBITDA")
-        leverage = leverage_metric.value if isinstance(leverage_metric.value, (int, float)) else None
-        segments_consistent = len(quarter.segments) >= 1
-        if fcf_positive and op_inc is not None and op_inc >= 0 and leverage is not None and leverage <= 1.0 and segments_consistent:
-            return "Mature"
-        return "Emergent"
-
     def _collect_evidence(self, documents: Iterable[Document]) -> List[Dict[str, str]]:
         snippets: List[Dict[str, str]] = []
         for doc in documents:
@@ -126,7 +128,12 @@ class AnalystAgent:
             )
         return snippets
 
-    def _fallback_payload(self, path: str, metrics: List[Metric]) -> Dict[str, object]:
+    def _fallback_payload(
+        self,
+        path: str,
+        metrics: List[Metric],
+        stage0: Dict[str, List[Dict[str, object]]],
+    ) -> Dict[str, object]:
         metric_map = {metric.name: metric for metric in metrics}
 
         def numeric(name: str, default: float = 0.0) -> float:
@@ -144,7 +151,7 @@ class AnalystAgent:
             f"{path} path. Hard gates: PASS. Final Decision Gate: WATCH. "
             "WACC=NA, g=NA, Hurdle IRR=NA."
         )
-        stage_0 = []
+        stage_0 = stage0
         stage_1 = (
             "Latest revenue ${:,.0f} with free cash flow ${:,.0f}. ROIC sits at {:.1%} "
             "with net leverage {:.2f}x, suggesting solvency is stable but dependent on disciplined capital allocation."  # noqa: E501

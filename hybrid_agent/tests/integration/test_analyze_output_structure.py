@@ -69,6 +69,7 @@ def test_analyze_output_contains_required_sections():
 
     assert "output_0" in result
     assert "stage_0" in result
-    assert result["stage_0"] == []
+    assert "hard" in result["stage_0"]
+    assert isinstance(result["stage_0"]["hard"], list)
     assert "provenance" in result
     assert any(item["document_id"] == "DOC-1" for item in result["provenance"])
