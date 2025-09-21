@@ -94,3 +94,31 @@ def test_build_equity_cash_flows_validates_inputs():
 
 def test_valuation_sensitivity():
     assert dcf.valuation_sensitivity(0.08, [-0.01, 0, 0.01]) == (0.07, 0.08, 0.09)
+
+
+def test_irr_monotonicity_and_sensitivity():
+    base = dcf.run_irr_analysis(
+        price=100,
+        shares=1,
+        net_debt=0,
+        wacc=0.10,
+        terminal_g=0.03,
+        fcf_path=[100, 110, 121, 133, 146],
+        scenarios={
+            "Bull": [100, 120, 144, 173, 208],
+            "Bear": [100, 105, 110, 115, 120],
+        },
+    )
+
+    better = dcf.run_irr_analysis(
+        price=100,
+        shares=1,
+        net_debt=0,
+        wacc=0.09,
+        terminal_g=0.035,
+        fcf_path=[100, 115, 132, 152, 175],
+    )
+
+    assert better.irr > base.irr
+    assert set(base.sensitivity.keys()) == {"wacc+100bps", "wacc-100bps", "g+50bps", "g-50bps"}
+    assert base.scenarios[0].name == "Bull"

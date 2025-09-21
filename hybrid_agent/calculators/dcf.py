@@ -1,7 +1,8 @@
-"""Deterministic WACC, terminal growth, and reverse-DCF helpers."""
+"""Deterministic valuation helpers."""
 from __future__ import annotations
 
-from typing import Iterable, Optional, Sequence, Tuple
+from dataclasses import dataclass
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .utils import safe_div
 
@@ -209,3 +210,64 @@ def valuation_sensitivity(
     """Return a tuple of sensitivity points around a base rate."""
 
     return tuple(base_rate + delta for delta in deltas)
+
+
+@dataclass
+class ScenarioResult:
+    name: str
+    fcf_path: Tuple[float, ...]
+    irr: Optional[float]
+
+
+@dataclass
+class IRRAnalysis:
+    irr: Optional[float]
+    scenarios: List[ScenarioResult]
+    sensitivity: Dict[str, Optional[float]]
+
+
+def run_irr_analysis(
+    *,
+    price: float,
+    shares: float,
+    net_debt: float,
+    wacc: float,
+    terminal_g: float,
+    fcf_path: Sequence[float],
+    scenarios: Optional[Dict[str, Sequence[float]]] = None,
+) -> IRRAnalysis:
+    base_irr = _equity_irr(price, shares, net_debt, wacc, terminal_g, fcf_path)
+    scenario_results: List[ScenarioResult] = []
+    if scenarios:
+        for name, path in scenarios.items():
+            irr_value = _equity_irr(price, shares, net_debt, wacc, terminal_g, path)
+            scenario_results.append(ScenarioResult(name=name, fcf_path=tuple(path), irr=irr_value))
+
+    sensitivity = {
+        "wacc+100bps": _equity_irr(price, shares, net_debt, wacc + 0.01, terminal_g, fcf_path),
+        "wacc-100bps": _equity_irr(price, shares, net_debt, max(wacc - 0.01, 0.0), terminal_g, fcf_path),
+        "g+50bps": _equity_irr(price, shares, net_debt, wacc, terminal_g + 0.005, fcf_path),
+        "g-50bps": _equity_irr(price, shares, net_debt, wacc, terminal_g - 0.005, fcf_path),
+    }
+
+    return IRRAnalysis(irr=base_irr, scenarios=scenario_results, sensitivity=sensitivity)
+
+
+def _equity_irr(
+    price: float,
+    shares: float,
+    net_debt: float,
+    wacc: float,
+    terminal_g: float,
+    fcf_path: Sequence[float],
+) -> Optional[float]:
+    if not fcf_path:
+        return None
+    terminal_ev = terminal_value_gordon(fcf_path[-1], wacc, terminal_g)
+    if terminal_ev is None:
+        return None
+    terminal_equity = terminal_ev - net_debt
+    cash_flows = build_equity_cash_flows(price, fcf_path, terminal_equity, shares)
+    if cash_flows is None:
+        return None
+    return internal_rate_of_return(cash_flows)
