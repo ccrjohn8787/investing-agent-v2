@@ -9,6 +9,17 @@ from hybrid_agent.calculate.service import CalculationService
 from hybrid_agent.calculators.metric_builder import MetricBuilder
 from hybrid_agent.models import CompanyQuarter, Document, Metric
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever
+from .llm import LLMClient, DummyLLMClient
+
+
+class _LegacyLLMAdapter(LLMClient):
+    def __init__(self, legacy_llm: object) -> None:
+        if not hasattr(legacy_llm, "generate"):
+            raise TypeError("legacy llm must implement generate(prompt: str) -> str")
+        self._llm = legacy_llm
+
+    def generate(self, prompt: str) -> str:
+        return self._llm.generate(prompt)
 
 _PROMPT_PATH = Path(__file__).resolve().parent / "prompts" / "analyst_prompt.txt"
 
@@ -19,9 +30,16 @@ class AnalystAgent:
         calculation_service: Optional[CalculationService] = None,
         retriever: Optional[Retriever] = None,
         llm: Optional[object] = None,
+        llm_client: Optional[LLMClient] = None,
     ) -> None:
         self._calc_service = calculation_service or CalculationService()
         self._retriever = retriever or Retriever(InMemoryDocumentIndex())
+        if llm_client is not None:
+            self._llm_client = llm_client
+        elif llm is not None:
+            self._llm_client = _LegacyLLMAdapter(llm)
+        else:
+            self._llm_client = None
         self._llm = llm
         self._prompt_template = _PROMPT_PATH.read_text(encoding="utf-8")
 
@@ -63,9 +81,10 @@ class AnalystAgent:
         return merged
 
     def _invoke_llm(self, prompt: str) -> Dict[str, object]:
-        if self._llm is None:
+        client = self._llm_client
+        if client is None:
             return {}
-        raw = self._llm.generate(prompt)
+        raw = client.generate(prompt)
         try:
             return json.loads(raw)
         except json.JSONDecodeError:

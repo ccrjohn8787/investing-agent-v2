@@ -1,10 +1,12 @@
 """Delta engine for quarter-over-quarter and year-over-year comparisons."""
 from __future__ import annotations
 
-from typing import Dict
+from pathlib import Path
+from typing import Dict, Optional
 
 from hybrid_agent.calculators.utils import safe_div
 from hybrid_agent.models import CompanyQuarter
+from .store import DeltaStore
 
 
 class DeltaEngine:
@@ -14,6 +16,9 @@ class DeltaEngine:
         "CFO": ("cash_flow", "CFO"),
         "FCF": ("cash_flow", "FCF"),
     }
+
+    def __init__(self, store: Optional[DeltaStore] = None) -> None:
+        self._store = store or DeltaStore()
 
     def compute(
         self,
@@ -39,4 +44,9 @@ class DeltaEngine:
                 "qoq_percent": qoq_percent if qoq_percent is not None else 0.0,
                 "yoy_percent": yoy_percent if yoy_percent is not None else 0.0,
             }
+        ticker = current.ticker.upper()
+        self._store.save(ticker, deltas)
         return deltas
+
+    def fetch(self, ticker: str) -> Dict[str, Dict[str, float]]:
+        return self._store.fetch(ticker)

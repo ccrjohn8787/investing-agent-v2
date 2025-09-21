@@ -8,7 +8,7 @@ Deliver an automated Stage-0 screen and Stage-1 draft for public equities while 
 - FastAPI surface exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, and `/triggers` endpoints.
 - Comprehensive unit and integration tests are authored but require dependency installation (FastAPI + pytest) to execute.
 - Offline smoke test (`python3 hybrid_agent/docs/smoke_test.py`) validates the deterministic pipeline without external packages.
-- Live SEC integration demo available via `python3 scripts/run_ticker.py UBER uber_output.json` (fetches latest 10-K, builds metrics from the Company Facts API, and runs analyst/verifier agents with QA PASS).
+- Live SEC integration demo available via `.venv/bin/python scripts/run_ticker.py UBER uber_output.json` (fetches latest 10-K, parses statements, builds TF–IDF evidence store, runs analyst/verifier agents with QA PASS, and persists the dossier for the `/dashboard`).
 
 ## Engineering Approach
 - **TDD first**: write failing tests per milestone before implementing features.

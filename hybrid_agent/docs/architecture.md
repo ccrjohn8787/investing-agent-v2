@@ -14,17 +14,21 @@
    - `MetricBuilder` translates `CompanyQuarter` data into provenance-ready `Metric` objects.
    - `/calculate` endpoint surfaces the combined metric set.
 4. **Evidence Retrieval (RAG)** (`hybrid_agent.rag`)
-   - `InMemoryDocumentIndex` chunk documents.
-   - `Retriever` returns quoted spans for qualitative gates.
+   - `InMemoryDocumentIndex` chunk documents and persists raw spans.
+   - `TfidfVectorStore` builds TF–IDF embeddings (scikit-learn) with optional disk persistence.
+   - `Retriever` blends exact-term and vector similarity scores to return quoted spans.
 5. **Agents** (`hybrid_agent.agents`)
    - **AnalystAgent** orchestrates calculators + RAG, builds prompts, and merges LLM output with fallbacks and provenance.
    - **VerifierAgent** deterministically re-computes metrics, audits sources, and enforces hard-gate completeness to return `QAResult`.
 6. **Delta & Trigger Services**
-   - `DeltaEngine` compares quarter-over-quarter and year-over-year movements.
-   - `TriggerMonitor` tracks KPI thresholds and deadlines, exposed via `/delta` and `/triggers` endpoints.
-7. **API Surface** (`hybrid_agent.api`)
-   - FastAPI app exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, and `/triggers` routes.
-   - Dependency injection wires services for testing overrides.
+   - `DeltaEngine` stores results via `DeltaStore` (JSON on disk) for later retrieval and dashboard use.
+   - `TriggerMonitor` syncs with `TriggerStore`, keeping flip-trigger definitions surviving process restarts.
+7. **Reports & UI**
+   - `ReportStore` captures analyst/verifier outputs per ticker.
+   - `/reports/{ticker}` exposes stored dossiers; `/dashboard` renders a lightweight HTML summary.
+8. **API Surface** (`hybrid_agent.api`)
+   - FastAPI app exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, `/triggers`, `/reports/{ticker}`, and `/dashboard` routes.
+   - Dependency injection wires calculation, storage, and retrieval services for testing overrides.
 
 ## Data Contracts
 - Centralised in `hybrid_agent/models.py` (Pydantic). All components exchange `Document`, `Metric`, `CompanyQuarter`, `QAResult`, etc., ensuring provenance and type validation.

@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Dict
 
 import sys
 
@@ -18,9 +18,14 @@ from hybrid_agent.calculate import CalculationService
 from hybrid_agent.ingest.edgar import EDGARClient
 from hybrid_agent.ingest.service import IngestService
 from hybrid_agent.ingest.store import DocumentStore
-from hybrid_agent.models import Document
-from hybrid_agent.parse import SECFactsClient, build_company_quarter_from_facts
-from hybrid_agent.rag import InMemoryDocumentIndex, Retriever
+from hybrid_agent.models import Document, CompanyQuarter
+from hybrid_agent.parse import (
+    SECFactsClient,
+    FilingExtractor,
+    build_company_quarter_from_facts,
+)
+from hybrid_agent.rag import InMemoryDocumentIndex, Retriever, TfidfVectorStore
+from hybrid_agent.reports.store import ReportStore
 
 # Minimal ticker to CIK mapping for demo purposes
 CIK_MAP = {
@@ -86,12 +91,19 @@ def main() -> None:
     facts = facts_client.company_facts(cik)
     quarter = build_company_quarter_from_facts(ticker, cik, facts)
 
-    # Build retriever index with the downloaded document content (basic chunking)
     doc_path = Path("data/pit_documents") / ticker / f"{document.id}.bin"
     text_content = doc_path.read_bytes().decode("latin-1", errors="ignore")
+    # Parse detailed statements from the downloaded 10-K HTML
+    extractor = FilingExtractor()
+    statement_data = extractor.extract(text_content)
+    quarter = _merge_statement_data(quarter, statement_data)
+
+    # Build retriever index with the downloaded document content (basic chunking)
     index = InMemoryDocumentIndex(chunk_size=120)
     index.add(document, text_content)
-    retriever = Retriever(index)
+    vector_store = TfidfVectorStore()
+    vector_store.add(document, text_content)
+    retriever = Retriever(index, vector_store=vector_store)
 
     calc_service = CalculationService()
     calc_result = calc_service.calculate(quarter)
@@ -151,9 +163,62 @@ def main() -> None:
         return item
 
     serializable = _convert(payload)
+    ReportStore().save_report(
+        ticker,
+        serializable["analyst"],
+        serializable["verifier"],
+    )
     args.output.write_text(json.dumps(serializable, indent=2), encoding="utf-8")
     print(f"Analyst verdict: {analyst_result['output_0']}")
     print(f"Verifier QA: {verifier_result.status}")
+def _merge_statement_data(quarter: CompanyQuarter, statements) -> CompanyQuarter:
+    """Merge extracted statement values into CompanyQuarter model."""
+
+    payload = quarter.model_dump()
+    income = payload.get("income_stmt", {})
+    balance = payload.get("balance_sheet", {})
+    cash_flow = payload.get("cash_flow", {})
+
+    def fetch(source: Dict[str, float], candidates: list[str]) -> Optional[float]:
+        for candidate in candidates:
+            for key, value in source.items():
+                if candidate.lower() in key.lower():
+                    return value
+        return None
+
+    revenue = fetch(statements.income_statement, ["revenue", "sales"])
+    if revenue is not None:
+        income["Revenue"] = revenue
+    net_income = fetch(statements.income_statement, ["net income", "net earnings"])
+    if net_income is not None:
+        income["NetIncome"] = net_income
+    ebit = fetch(statements.income_statement, ["operating income", "earnings before interest"])
+    if ebit is not None:
+        income["EBIT"] = ebit
+
+    assets = fetch(statements.balance_sheet, ["total assets"])
+    if assets is not None:
+        balance["TotalAssets"] = assets
+    cash = fetch(statements.balance_sheet, ["cash", "cash equivalents"])
+    if cash is not None:
+        balance["Cash"] = cash
+    equity = fetch(statements.balance_sheet, ["stockholders' equity", "shareholders' equity"])
+    if equity is not None:
+        balance["TotalEquity"] = equity
+
+    cfo = fetch(statements.cash_flow, ["net cash provided", "net cash used by operating"])
+    if cfo is not None:
+        cash_flow["CFO"] = cfo
+    capex = fetch(statements.cash_flow, ["payments to acquire", "capital expenditures"])
+    if capex is not None:
+        cash_flow["CapEx"] = capex
+        if cfo is not None:
+            cash_flow["FCF"] = cfo + capex
+
+    payload["income_stmt"] = income
+    payload["balance_sheet"] = balance
+    payload["cash_flow"] = cash_flow
+    return CompanyQuarter(**payload)
 
 
 if __name__ == "__main__":

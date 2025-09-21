@@ -3,6 +3,7 @@ from .xbrl import XBRLParser
 from .pdf_tables import PDFTableExtractor
 from .normalize import Normalizer
 from .sec_facts import SECFactsClient, build_company_quarter_from_facts
+from .filing_extractor import FilingExtractor, StatementExtractionResult
 
 __all__ = [
     "XBRLParser",
@@ -10,4 +11,6 @@ __all__ = [
     "Normalizer",
     "SECFactsClient",
     "build_company_quarter_from_facts",
+    "FilingExtractor",
+    "StatementExtractionResult",
 ]

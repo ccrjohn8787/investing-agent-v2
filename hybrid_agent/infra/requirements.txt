@@ -5,3 +5,10 @@ pytest
 pytest-cov
 requests
 httpx
+pandas
+beautifulsoup4
+lxml
+html5lib
+scikit-learn
+requests
+httpx

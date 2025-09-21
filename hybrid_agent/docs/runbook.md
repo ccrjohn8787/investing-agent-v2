@@ -41,10 +41,16 @@ This uses in-memory data to execute the calculation pipeline, the analyst agent 
 ## Real Ticker Demo (UBER)
 With network access and dependencies installed, you can fetch Uber's latest 10-K, build financial metrics from the SEC Company Facts API, and run the full analyst/verifier pipeline:
 ```
-python3 scripts/run_ticker.py UBER uber_output.json
+.venv/bin/python scripts/run_ticker.py UBER uber_output.json
 ```
 The script executes the following steps:
 - Downloads and stores the latest 10-K filing under `data/pit_documents/`
-- Calls the SEC Company Facts endpoint to assemble a `CompanyQuarter`
-- Runs deterministic calculators, populates Stage-0 gates, and invokes the analyst agent
-- Generates provenance entries and verifies the dossier; the resulting JSON (default `uber_output.json`) includes analyst outputs and a QA verdict.
+- Parses the filing tables via `FilingExtractor` and merges the data with the SEC Company Facts snapshot
+- Builds a TF–IDF vector store and runs the analyst agent (LLM optional) and deterministic fallback logic
+- Generates provenance entries, runs verifier QA, persists the dossier to `data/runtime/reports.json`, and saves the JSON payload to `uber_output.json`.
+
+After running the script you can view the stored dossier via:
+```
+curl http://localhost:8000/reports/UBER
+```
+and load the HTML dashboard at `http://localhost:8000/dashboard` once the FastAPI server is running.
