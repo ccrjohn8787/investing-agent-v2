@@ -40,3 +40,4 @@ def test_filing_extractor_parses_sample_statements():
     assert result.income_statement["Net income"] == 540
     assert result.balance_sheet["Total assets"] == 55000
     assert result.cash_flow["Net cash provided by operating activities"] == 5100
+    assert result.unit_scale == 1.0

@@ -109,5 +109,12 @@ def build_company_quarter_from_facts(ticker: str, cik: str, facts: Dict[str, obj
         segments={
             "Total": {"Revenue": revenue or 0.0},
         },
+        metadata={
+            "source": "sec_facts",
+            "currency": facts.get("currency", "USD"),
+            "unit_scale": 1.0,
+            "period_label": period_label,
+            "fiscal_period": end_period,
+        },
     )
     return company_quarter

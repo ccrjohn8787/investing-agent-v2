@@ -228,9 +228,16 @@ def _merge_statement_data(quarter: CompanyQuarter, statements) -> CompanyQuarter
         if cfo is not None:
             cash_flow["FCF"] = cfo + capex
 
+    metadata = payload.get("metadata", {})
+    metadata.setdefault("currency", statements.currency)
+    metadata.setdefault("unit_scale", statements.unit_scale)
+    if statements.unit_text:
+        metadata.setdefault("unit_text", statements.unit_text)
+
     payload["income_stmt"] = income
     payload["balance_sheet"] = balance
     payload["cash_flow"] = cash_flow
+    payload["metadata"] = metadata
     return CompanyQuarter(**payload)
 
 

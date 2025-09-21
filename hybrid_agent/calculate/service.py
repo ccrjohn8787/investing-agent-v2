@@ -21,8 +21,8 @@ class CalculationService:
         self._normalizer = normalizer or Normalizer()
         self._builder = builder or MetricBuilder()
 
-    def calculate(self, quarter: CompanyQuarter) -> CalculationResult:
-        normalized = self._normalizer.normalize_quarter(quarter)
+    def calculate(self, quarter: CompanyQuarter, history: Optional[List[CompanyQuarter]] = None) -> CalculationResult:
+        normalized = self._normalizer.normalize_quarter(quarter, history or [])
         metrics = self._builder.build(normalized)
         return CalculationResult(
             ticker=normalized.ticker,

@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+import re
+from typing import Dict, List, Optional, Tuple
 
 from bs4 import BeautifulSoup
 
@@ -12,6 +13,9 @@ class StatementExtractionResult:
     income_statement: Dict[str, float]
     balance_sheet: Dict[str, float]
     cash_flow: Dict[str, float]
+    unit_scale: float = 1.0
+    currency: str = "USD"
+    unit_text: Optional[str] = None
 
 
 class FilingExtractor:
@@ -28,6 +32,7 @@ class FilingExtractor:
     def extract(self, html: str) -> StatementExtractionResult:
         soup = BeautifulSoup(html, "lxml")
         tables = self._parse_tables(soup)
+        unit_scale, currency, unit_text = self._detect_metadata(soup)
 
         income = self._extract_statement(tables, ["operations", "income"], fallback_keys=["Revenues", "Net income"])
         balance = self._extract_statement(tables, ["balance"], fallback_keys=["Total assets", "Total liabilities"])
@@ -37,6 +42,9 @@ class FilingExtractor:
             income_statement=income or {},
             balance_sheet=balance or {},
             cash_flow=cash or {},
+            unit_scale=unit_scale,
+            currency=currency,
+            unit_text=unit_text,
         )
 
     def _extract_statement(
@@ -101,3 +109,35 @@ class FilingExtractor:
             return float(value)
         except (TypeError, ValueError):
             return None
+
+    UNIT_PATTERNS: List[Tuple[re.Pattern[str], float]] = [
+        (re.compile(r"\bin\s+thousands\b", re.I), 1_000.0),
+        (re.compile(r"\bin\s+millions\b", re.I), 1_000_000.0),
+        (re.compile(r"\bin\s+billions\b", re.I), 1_000_000_000.0),
+    ]
+
+    CURRENCY_PATTERNS: List[Tuple[re.Pattern[str], str]] = [
+        (re.compile(r"\bUSD\b|United States Dollar", re.I), "USD"),
+        (re.compile(r"\bEUR\b|Euro", re.I), "EUR"),
+        (re.compile(r"\bGBP\b|Pound Sterling", re.I), "GBP"),
+    ]
+
+    def _detect_metadata(self, soup: BeautifulSoup) -> Tuple[float, str, Optional[str]]:
+        text = soup.get_text(" ", strip=True)
+        unit_scale = 1.0
+        currency = self.currency
+        unit_text: Optional[str] = None
+
+        for pattern, scale in self.UNIT_PATTERNS:
+            match = pattern.search(text)
+            if match:
+                unit_scale = scale
+                unit_text = match.group(0)
+                break
+
+        for pattern, code in self.CURRENCY_PATTERNS:
+            if pattern.search(text):
+                currency = code
+                break
+
+        return unit_scale, currency, unit_text

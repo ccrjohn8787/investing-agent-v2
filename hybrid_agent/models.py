@@ -1,7 +1,7 @@
 """Pydantic data contracts for the hybrid investment research agent."""
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Literal, Union
+from typing import Dict, List, Optional, Literal, Union, Any
 
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -53,6 +53,7 @@ class CompanyQuarter(BaseModel):
     balance_sheet: Dict[str, float]
     cash_flow: Dict[str, float]
     segments: Dict[str, Dict[str, float]]
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class GateRow(BaseModel):
