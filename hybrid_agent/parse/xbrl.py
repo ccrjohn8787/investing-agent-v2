@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, Union
 
 from hybrid_agent.models import CompanyQuarter
 
@@ -11,7 +11,7 @@ from hybrid_agent.models import CompanyQuarter
 class XBRLParser:
     """Parses simplified XBRL JSON payloads into `CompanyQuarter`s."""
 
-    def parse(self, source: Path | str) -> CompanyQuarter:
+    def parse(self, source: Union[Path, str]) -> CompanyQuarter:
         path = Path(source)
         payload = json.loads(path.read_text(encoding="utf-8"))
         return self._to_company_quarter(payload)

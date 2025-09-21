@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 import urllib.request
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -96,7 +96,7 @@ def calculate_metrics(
     request: CalculationRequest,
     service: CalculationService = Depends(get_calculation_service),
 ) -> CalculationResponse:
-    result = service.calculate(CompanyQuarter(**request.dict()))
+    result = service.calculate(CompanyQuarter(**request.model_dump()))
     return CalculationResponse(
         ticker=result.ticker,
         period=result.period,
@@ -105,7 +105,7 @@ def calculate_metrics(
 
 
 class AnalyzeDocument(Document):
-    content: str | None = None
+    content: Optional[str] = None
 
 
 class AnalyzeRequest(BaseModel):
@@ -138,7 +138,7 @@ def analyze(request: AnalyzeRequest, calc_service: CalculationService = Depends(
     result = agent.analyze(
         ticker=request.ticker,
         today=request.today,
-        quarter=CompanyQuarter(**request.quarter.dict()),
+        quarter=CompanyQuarter(**request.quarter.model_dump()),
         documents=documents,
     )
     return AnalyzeResponse(**result)
@@ -156,7 +156,10 @@ class VerifyResponse(QAResult):
 @app.post("/verify", response_model=VerifyResponse)
 def verify(request: VerifyRequest, calc_service: CalculationService = Depends(get_calculation_service)) -> VerifyResponse:
     agent = VerifierAgent(calc_service)
-    result = agent.verify(quarter=CompanyQuarter(**request.quarter.dict()), dossier=request.dossier)
+    result = agent.verify(
+        quarter=CompanyQuarter(**request.quarter.model_dump()),
+        dossier=request.dossier,
+    )
     return VerifyResponse(status=result.status, reasons=result.reasons)
 
 
@@ -181,9 +184,9 @@ def get_delta_engine() -> DeltaEngine:
 @app.post("/delta", response_model=DeltaResponse)
 def compute_delta(request: DeltaRequest, engine: DeltaEngine = Depends(get_delta_engine)) -> DeltaResponse:
     result = engine.compute(
-        CompanyQuarter(**request.current.dict()),
-        CompanyQuarter(**request.prior.dict()),
-        CompanyQuarter(**request.year_ago.dict()),
+        CompanyQuarter(**request.current.model_dump()),
+        CompanyQuarter(**request.prior.model_dump()),
+        CompanyQuarter(**request.year_ago.model_dump()),
     )
     return DeltaResponse(deltas=result)
 

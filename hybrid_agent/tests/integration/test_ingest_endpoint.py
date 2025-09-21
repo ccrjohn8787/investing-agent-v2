@@ -45,7 +45,7 @@ def test_ingest_endpoint_persists_documents(tmp_path):
     loaded_doc, raw_bytes = document_store.load(doc_payload["id"])
 
     assert raw_bytes == b"filing-body"
-    assert loaded_doc.url == "https://example.com/aapl-10k.pdf"
+    assert str(loaded_doc.url) == "https://example.com/aapl-10k.pdf"
     assert loaded_doc.doc_type == "10-K"
 
     app.dependency_overrides.clear()

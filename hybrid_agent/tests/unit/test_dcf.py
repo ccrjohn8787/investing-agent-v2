@@ -74,7 +74,7 @@ def test_implied_share_price():
 def test_internal_rate_of_return():
     # invest 100 today, receive 60, 60, 60
     irr = dcf.internal_rate_of_return([-100, 60, 60, 60])
-    assert irr == pytest.approx(0.3641, rel=1e-3)
+    assert irr == pytest.approx(0.3631, rel=1e-3)
 
 
 def test_internal_rate_of_return_non_convergence_returns_none():

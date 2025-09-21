@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
 
 from hybrid_agent.calculators.metric_builder import MetricBuilder
 from hybrid_agent.models import CompanyQuarter, Metric
@@ -17,7 +17,7 @@ class CalculationResult:
 
 
 class CalculationService:
-    def __init__(self, normalizer: Normalizer | None = None, builder: MetricBuilder | None = None) -> None:
+    def __init__(self, normalizer: Optional[Normalizer] = None, builder: Optional[MetricBuilder] = None) -> None:
         self._normalizer = normalizer or Normalizer()
         self._builder = builder or MetricBuilder()
 

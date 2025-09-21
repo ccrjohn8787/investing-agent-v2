@@ -27,7 +27,7 @@ def test_fetch_document_success():
     assert isinstance(document, Document)
     assert raw_bytes == content
     assert document.ticker == "AAPL"
-    assert document.url == "https://example.com/aapl-10k.pdf"
+    assert str(document.url) == "https://example.com/aapl-10k.pdf"
     assert document.pit_hash == hashlib.sha256(content).hexdigest()
     assert document.id.startswith("AAPL-")
     http_get.assert_called_once_with("https://example.com/aapl-10k.pdf")

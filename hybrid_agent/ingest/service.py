@@ -19,8 +19,8 @@ class DocumentSpec:
 
     @classmethod
     def from_payload(cls, payload: object) -> "DocumentSpec":
-        if hasattr(payload, "dict"):
-            raw = payload.dict()
+        if hasattr(payload, "model_dump"):
+            raw = payload.model_dump()
         elif isinstance(payload, dict):  # type: ignore[arg-type]
             raw = payload
         else:  # pragma: no cover - defensive guard

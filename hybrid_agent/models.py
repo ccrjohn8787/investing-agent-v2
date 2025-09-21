@@ -1,7 +1,7 @@
 """Pydantic data contracts for the hybrid investment research agent."""
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Literal
+from typing import Dict, List, Optional, Literal, Union
 
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -34,7 +34,7 @@ class Metric(BaseModel):
     """Numeric or textual metric with provenance and optional dependency graph."""
 
     name: str
-    value: float | str
+    value: Union[float, str]
     unit: str
     period: str
     source_doc_id: str

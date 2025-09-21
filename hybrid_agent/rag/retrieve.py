@@ -32,7 +32,7 @@ class Retriever:
                     "document_id": chunk.document_id,
                     "ticker": chunk.ticker,
                     "document_type": chunk.document_type,
-                    "url": chunk.url,
+                    "url": str(chunk.url),
                     "excerpt": chunk.text,
                 }
             )

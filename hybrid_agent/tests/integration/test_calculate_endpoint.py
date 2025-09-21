@@ -35,7 +35,7 @@ def test_calculate_endpoint_returns_metrics(tmp_path):
     client = TestClient(app)
     response = client.post(
         "/calculate",
-        json=json.loads(quarter.json()),
+        json=quarter.model_dump(),
     )
 
     assert response.status_code == 200

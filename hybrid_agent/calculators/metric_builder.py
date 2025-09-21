@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from hybrid_agent.calculators import (
     accruals,
@@ -57,7 +57,7 @@ class MetricBuilder:
         quarter: CompanyQuarter,
         inputs: Optional[List[str]],
     ) -> Metric:
-        metric_value: float | str
+        metric_value: Union[float, str]
         if value is None:
             metric_value = "ABSTAIN"
         else:

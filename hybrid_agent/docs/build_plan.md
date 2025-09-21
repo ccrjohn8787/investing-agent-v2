@@ -3,6 +3,13 @@
 ## Project Goal
 Deliver an automated Stage-0 screen and Stage-1 draft for public equities while guaranteeing provenance and leaving final trade deployment to a human. Outputs include the one-line verdict, Stage-0 gate table, Stage-1 one-pager, provenance table, reverse-DCF block, Final Decision Gate inputs, and a verifier QA verdict.
 
+## Current Status (September 20, 2024)
+- Core ingestion, parsing, calculators, RAG index, analyst/verifier agents, delta engine, and trigger monitor are implemented.
+- FastAPI surface exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, and `/triggers` endpoints.
+- Comprehensive unit and integration tests are authored but require dependency installation (FastAPI + pytest) to execute.
+- Offline smoke test (`python3 hybrid_agent/docs/smoke_test.py`) validates the deterministic pipeline without external packages.
+- Live SEC integration demo available via `python3 scripts/run_ticker.py UBER uber_output.json` (fetches latest 10-K, builds metrics from the Company Facts API, and runs analyst/verifier agents with QA PASS).
+
 ## Engineering Approach
 - **TDD first**: write failing tests per milestone before implementing features.
 - **Deterministic core**: calculators remain pure, auditable functions.

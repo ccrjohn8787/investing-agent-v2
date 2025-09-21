@@ -3,9 +3,10 @@ from __future__ import annotations
 
 import hashlib
 import time
-import urllib.request
 from dataclasses import dataclass
 from typing import Callable, Optional, Tuple
+
+import requests
 
 from hybrid_agent.models import Document
 
@@ -15,8 +16,16 @@ class FetchError(RuntimeError):
 
 
 def _default_http_get(url: str) -> bytes:
-    with urllib.request.urlopen(url) as response:  # type: ignore[call-arg]
-        return response.read()
+    session = requests.Session()
+    session.headers.update(
+        {
+            "User-Agent": "HybridAgent/1.0 (contact: research@hybridagent.local)",
+            "Accept": "text/html,application/json",
+        }
+    )
+    response = session.get(url, timeout=30)
+    response.raise_for_status()
+    return response.content
 
 
 @dataclass

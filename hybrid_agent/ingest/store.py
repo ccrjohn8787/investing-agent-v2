@@ -10,8 +10,8 @@ from hybrid_agent.models import Document
 class DocumentStore:
     """Persists immutable documents keyed by ticker and PIT hash."""
 
-    def __init__(self, base_path: Path | str) -> None:
-        self._base_path = Path(base_path)
+    def __init__(self, base_path: Path) -> None:
+        self._base_path = base_path
         self._base_path.mkdir(parents=True, exist_ok=True)
 
     def save(self, document: Document, content: bytes) -> Document:
@@ -21,7 +21,7 @@ class DocumentStore:
         binary_path = ticker_dir / f"{document.id}.bin"
 
         if not metadata_path.exists():
-            metadata_path.write_text(document.json(indent=2), encoding="utf-8")
+            metadata_path.write_text(document.model_dump_json(indent=2), encoding="utf-8")
         if not binary_path.exists():
             binary_path.write_bytes(content)
         return document
@@ -33,10 +33,10 @@ class DocumentStore:
         binary_path = ticker_dir / f"{document_id}.bin"
         if not metadata_path.exists() or not binary_path.exists():
             raise FileNotFoundError(document_id)
-        document = Document.parse_file(metadata_path)
+        document = Document.model_validate_json(metadata_path.read_text(encoding="utf-8"))
         content = binary_path.read_bytes()
         return document, content
 
     def list_documents(self) -> Iterable[Document]:
         for metadata_path in self._base_path.glob("*/*.json"):
-            yield Document.parse_file(metadata_path)
+            yield Document.model_validate_json(metadata_path.read_text(encoding="utf-8"))
