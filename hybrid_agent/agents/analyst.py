@@ -89,13 +89,15 @@ class AnalystAgent:
             path,
         )
         stage0_payload = {key: [row.model_dump() for row in rows] for key, rows in stage0_rows.items()}
-        fallback = self._fallback_payload(path, calc_result.metrics, stage0_payload)
+        metrics_payload = [self._metric_payload(metric) for metric in calc_result.metrics]
+        fallback = self._fallback_payload(path, calc_result.metrics, stage0_payload, metrics_payload)
 
         merged = {
             "output_0": llm_payload.get("output_0") or fallback["output_0"],
             "stage_0": llm_payload.get("stage_0") or fallback["stage_0"],
             "stage_1": llm_payload.get("stage_1") or fallback["stage_1"],
             "provenance": llm_payload.get("provenance") or [],
+            "metrics": metrics_payload,
             "reverse_dcf": llm_payload.get("reverse_dcf") or fallback["reverse_dcf"],
             "final_gate": llm_payload.get("final_gate") or fallback["final_gate"],
             "path_reasons": path_decision.reasons,
@@ -142,6 +144,7 @@ class AnalystAgent:
         path: str,
         metrics: List[Metric],
         stage0: Dict[str, List[Dict[str, object]]],
+        metrics_payload: List[Dict[str, object]],
     ) -> Dict[str, object]:
         metric_map = {metric.name: metric for metric in metrics}
 
@@ -204,4 +207,22 @@ class AnalystAgent:
             "stage_1": stage_1,
             "reverse_dcf": reverse_dcf,
             "final_gate": final_gate,
+            "metrics": metrics_payload,
+            "provenance": metrics_payload,
+            "evidence": [],
         }
+
+    def _metric_payload(self, metric: Metric) -> Dict[str, object]:
+        payload = {
+            "metric": metric.name,
+            "value": metric.value,
+            "unit": metric.unit,
+            "period": metric.period,
+            "source_doc_id": metric.source_doc_id,
+            "page_or_section": metric.page_or_section,
+            "quote": metric.quote,
+            "url": str(metric.url),
+        }
+        if metric.metadata:
+            payload["metadata"] = metric.metadata
+        return payload
