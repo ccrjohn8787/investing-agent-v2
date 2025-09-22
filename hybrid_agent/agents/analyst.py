@@ -8,8 +8,11 @@ from typing import Dict, Iterable, List, Optional
 from hybrid_agent.calculate.service import CalculationService
 from hybrid_agent.calculators.metric_builder import MetricBuilder
 from hybrid_agent.gates import StageZeroBuilder, determine_path
+from hybrid_agent.ingest.store import DocumentStore
 from hybrid_agent.models import CompanyQuarter, Document, Metric, GateRow
+from hybrid_agent.provenance.validator import ProvenanceValidator
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever
+from hybrid_agent.rag.planner import RetrievalPlanner
 from .llm import LLMClient, DummyLLMClient
 
 
@@ -32,6 +35,7 @@ class AnalystAgent:
         retriever: Optional[Retriever] = None,
         llm: Optional[object] = None,
         llm_client: Optional[LLMClient] = None,
+        document_store: Optional[DocumentStore] = None,
     ) -> None:
         self._calc_service = calculation_service or CalculationService()
         self._retriever = retriever or Retriever(InMemoryDocumentIndex())
@@ -44,6 +48,8 @@ class AnalystAgent:
             self._llm_client = None
         self._llm = llm
         self._prompt_template = _PROMPT_PATH.read_text(encoding="utf-8")
+        self._planner = RetrievalPlanner()
+        self._provenance_validator = ProvenanceValidator(document_store) if document_store else None
 
     def build_prompt(self, ticker: str, today: str, path: str, metrics_summary: str) -> str:
         return (
@@ -71,6 +77,11 @@ class AnalystAgent:
         metrics_summary = self._summarize_metrics(calc_result.metrics)
         prompt = self.build_prompt(ticker, today, path, metrics_summary)
 
+        provenance_issues: List[str] = []
+        if self._provenance_validator:
+            issues = self._provenance_validator.validate_metrics(calc_result.metrics)
+            provenance_issues = [f"{issue.metric}: {issue.reason}" for issue in issues]
+
         llm_payload = self._invoke_llm(prompt)
         stage0_rows = self._stage0_builder.build(
             calc_result.metrics,
@@ -88,10 +99,12 @@ class AnalystAgent:
             "reverse_dcf": llm_payload.get("reverse_dcf") or fallback["reverse_dcf"],
             "final_gate": llm_payload.get("final_gate") or fallback["final_gate"],
             "path_reasons": path_decision.reasons,
+            "provenance_issues": provenance_issues,
         }
 
-        evidence = self._collect_evidence(documents)
-        merged["provenance"].extend(evidence)
+        evidence = self._collect_evidence(documents, normalized_quarter, path)
+        merged.setdefault("provenance", []).extend(evidence)
+        merged["evidence"] = evidence
         return merged
 
     def _invoke_llm(self, prompt: str) -> Dict[str, object]:
@@ -110,22 +123,18 @@ class AnalystAgent:
             parts.append(f"{metric.name}: {metric.value}")
         return "\n".join(parts)
 
-    def _collect_evidence(self, documents: Iterable[Document]) -> List[Dict[str, str]]:
+    def _collect_evidence(
+        self,
+        documents: Iterable[Document],
+        quarter: CompanyQuarter,
+        path: str,
+    ) -> List[Dict[str, str]]:
+        planner_output = self._planner.build_queries(quarter, path)
+        intent_results = self._planner.top_results(planner_output, self._retriever)
         snippets: List[Dict[str, str]] = []
-        for doc in documents:
-            query = f"pricing power {doc.ticker.lower()}"
-            results = self._retriever.search(query)
-            if not results:
-                continue
-            best = results[0]
-            snippets.append(
-                {
-                    "document_id": doc.id,
-                    "doc_type": doc.doc_type,
-                    "url": doc.url,
-                    "excerpt": best["excerpt"],
-                }
-            )
+        for intent, results in intent_results.items():
+            for result in results:
+                snippets.append({"intent": intent, **result})
         return snippets
 
     def _fallback_payload(

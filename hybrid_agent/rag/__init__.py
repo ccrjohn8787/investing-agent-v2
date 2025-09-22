@@ -2,6 +2,7 @@
 from .index import InMemoryDocumentIndex, IndexedChunk
 from .retrieve import Retriever
 from .vector_store import TfidfVectorStore, VectorStoreEntry
+from .planner import RetrievalPlanner
 
 __all__ = [
     "InMemoryDocumentIndex",
@@ -9,4 +10,5 @@ __all__ = [
     "Retriever",
     "TfidfVectorStore",
     "VectorStoreEntry",
+    "RetrievalPlanner",
 ]

@@ -102,7 +102,7 @@ def main() -> None:
     # Parse detailed statements from the downloaded 10-K HTML
     extractor = FilingExtractor()
     statement_data = extractor.extract(text_content)
-    quarter = _merge_statement_data(quarter, statement_data)
+    quarter = _merge_statement_data(quarter, statement_data, document)
 
     # Build retriever index with the downloaded document content (basic chunking)
     index = InMemoryDocumentIndex(chunk_size=120)
@@ -135,6 +135,7 @@ def main() -> None:
     analyst_kwargs = {
         "calculation_service": calc_service,
         "retriever": retriever,
+        "document_store": store,
     }
     if llm_client is not None:
         analyst_kwargs["llm_client"] = llm_client
@@ -184,13 +185,14 @@ def main() -> None:
     args.output.write_text(json.dumps(serializable, indent=2), encoding="utf-8")
     print(f"Analyst verdict: {analyst_result['output_0']}")
     print(f"Verifier QA: {verifier_result.status}")
-def _merge_statement_data(quarter: CompanyQuarter, statements) -> CompanyQuarter:
+def _merge_statement_data(quarter: CompanyQuarter, statements, document: Document) -> CompanyQuarter:
     """Merge extracted statement values into CompanyQuarter model."""
 
     payload = quarter.model_dump()
     income = payload.get("income_stmt", {})
     balance = payload.get("balance_sheet", {})
     cash_flow = payload.get("cash_flow", {})
+    provenance = payload.get("metadata", {}).get("provenance", {})
 
     def fetch(source: Dict[str, float], candidates: list[str]) -> Optional[float]:
         for candidate in candidates:
@@ -199,40 +201,62 @@ def _merge_statement_data(quarter: CompanyQuarter, statements) -> CompanyQuarter
                     return value
         return None
 
+    def set_provenance(field: str, labels: Dict[str, str]):
+        if field not in provenance:
+            for key, label in labels.items():
+                if field.lower() in key.lower():
+                    provenance[field] = {
+                        "quote": label,
+                        "source_doc_id": document.id,
+                        "page_or_section": "filing table",
+                        "url": str(document.url),
+                        "date": document.date,
+                    }
+                    break
+
     revenue = fetch(statements.income_statement, ["revenue", "sales"])
     if revenue is not None:
         income["Revenue"] = revenue
+        set_provenance("Revenue", statements.income_provenance)
     net_income = fetch(statements.income_statement, ["net income", "net earnings"])
     if net_income is not None:
         income["NetIncome"] = net_income
+        set_provenance("NetIncome", statements.income_provenance)
     ebit = fetch(statements.income_statement, ["operating income", "earnings before interest"])
     if ebit is not None:
         income["EBIT"] = ebit
+        set_provenance("EBIT", statements.income_provenance)
 
     assets = fetch(statements.balance_sheet, ["total assets"])
     if assets is not None:
         balance["TotalAssets"] = assets
+        set_provenance("TotalAssets", statements.balance_provenance)
     cash = fetch(statements.balance_sheet, ["cash", "cash equivalents"])
     if cash is not None:
         balance["Cash"] = cash
+        set_provenance("Cash", statements.balance_provenance)
     equity = fetch(statements.balance_sheet, ["stockholders' equity", "shareholders' equity"])
     if equity is not None:
         balance["TotalEquity"] = equity
+        set_provenance("TotalEquity", statements.balance_provenance)
 
     cfo = fetch(statements.cash_flow, ["net cash provided", "net cash used by operating"])
     if cfo is not None:
         cash_flow["CFO"] = cfo
+        set_provenance("CFO", statements.cash_provenance)
     capex = fetch(statements.cash_flow, ["payments to acquire", "capital expenditures"])
     if capex is not None:
         cash_flow["CapEx"] = capex
         if cfo is not None:
             cash_flow["FCF"] = cfo + capex
+            set_provenance("FCF", statements.cash_provenance)
 
     metadata = payload.get("metadata", {})
     metadata.setdefault("currency", statements.currency)
     metadata.setdefault("unit_scale", statements.unit_scale)
     if statements.unit_text:
         metadata.setdefault("unit_text", statements.unit_text)
+    metadata.setdefault("provenance", provenance)
 
     payload["income_stmt"] = income
     payload["balance_sheet"] = balance

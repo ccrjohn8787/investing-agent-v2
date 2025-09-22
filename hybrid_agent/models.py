@@ -42,6 +42,7 @@ class Metric(BaseModel):
     quote: str
     url: HttpUrl
     inputs: Optional[List[str]] = None
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class CompanyQuarter(BaseModel):

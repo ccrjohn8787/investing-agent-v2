@@ -42,8 +42,16 @@ class IngestResponse(BaseModel):
     documents: List[Document]
 
 
+def get_document_store() -> DocumentStore:
+    store = getattr(app.state, "document_store", None)
+    if store is None:
+        store = DocumentStore(base_path=Path("data/pit_documents"))
+        app.state.document_store = store
+    return store
+
+
 def _default_ingest_service() -> IngestService:
-    store = DocumentStore(base_path=Path("data/pit_documents"))
+    store = get_document_store()
 
     def _http_get(url: str) -> bytes:
         with urllib.request.urlopen(url) as response:  # type: ignore[call-arg]
@@ -121,11 +129,14 @@ class AnalyzeRequest(BaseModel):
 
 class AnalyzeResponse(BaseModel):
     output_0: str
-    stage_0: List[dict]
+    stage_0: Dict[str, List[dict]]
     stage_1: str
     provenance: List[dict]
+    evidence: List[dict]
     reverse_dcf: dict
     final_gate: dict
+    path_reasons: List[str]
+    provenance_issues: List[str]
 
 
 @app.post("/analyze", response_model=AnalyzeResponse)
@@ -152,7 +163,12 @@ def analyze(
             index.add(doc, doc_payload.content)
             vector_store.add(doc, doc_payload.content)
     retriever = Retriever(index, vector_store=vector_store)
-    agent = AnalystAgent(calculation_service=calc_service, retriever=retriever)
+    document_store = get_document_store()
+    agent = AnalystAgent(
+        calculation_service=calc_service,
+        retriever=retriever,
+        document_store=document_store,
+    )
     result = agent.analyze(
         ticker=request.ticker,
         today=request.today,

@@ -62,16 +62,23 @@ class MetricBuilder:
             metric_value = "ABSTAIN"
         else:
             metric_value = value
+        source_meta = quarter.metadata.get("provenance", {}) if isinstance(quarter.metadata, dict) else {}
+        source_info = source_meta.get(name, {}) if isinstance(source_meta, dict) else {}
+        source_doc_id = source_info.get("source_doc_id", _SYSTEM_DOC_ID)
+        page_or_section = source_info.get("page_or_section", "n/a")
+        quote = source_info.get("quote", _SYSTEM_QUOTE)
+        url = source_info.get("url", _SYSTEM_URL)
         return Metric(
             name=name,
             value=metric_value,
             unit=unit,
             period=quarter.period,
-            source_doc_id=_SYSTEM_DOC_ID,
-            page_or_section="n/a",
-            quote=_SYSTEM_QUOTE,
-            url=_SYSTEM_URL,
+            source_doc_id=source_doc_id,
+            page_or_section=page_or_section,
+            quote=quote,
+            url=url,
             inputs=inputs,
+            metadata={k: v for k, v in source_info.items() if k not in {"source_doc_id", "page_or_section", "quote", "url"}},
         )
 
     def _build_fcf(self, quarter: CompanyQuarter) -> Metric:

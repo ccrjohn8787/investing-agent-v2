@@ -13,6 +13,9 @@ class StatementExtractionResult:
     income_statement: Dict[str, float]
     balance_sheet: Dict[str, float]
     cash_flow: Dict[str, float]
+    income_provenance: Dict[str, str]
+    balance_provenance: Dict[str, str]
+    cash_provenance: Dict[str, str]
     unit_scale: float = 1.0
     currency: str = "USD"
     unit_text: Optional[str] = None
@@ -34,14 +37,17 @@ class FilingExtractor:
         tables = self._parse_tables(soup)
         unit_scale, currency, unit_text = self._detect_metadata(soup)
 
-        income = self._extract_statement(tables, ["operations", "income"], fallback_keys=["Revenues", "Net income"])
-        balance = self._extract_statement(tables, ["balance"], fallback_keys=["Total assets", "Total liabilities"])
-        cash = self._extract_statement(tables, ["cash flows", "cash flow"], fallback_keys=["Net cash provided", "Cash and cash equivalents"])
+        income, income_labels = self._extract_statement(tables, ["operations", "income"], fallback_keys=["Revenues", "Net income"])
+        balance, balance_labels = self._extract_statement(tables, ["balance"], fallback_keys=["Total assets", "Total liabilities"])
+        cash, cash_labels = self._extract_statement(tables, ["cash flows", "cash flow"], fallback_keys=["Net cash provided", "Cash and cash equivalents"])
 
         return StatementExtractionResult(
             income_statement=income or {},
             balance_sheet=balance or {},
             cash_flow=cash or {},
+            income_provenance=income_labels or {},
+            balance_provenance=balance_labels or {},
+            cash_provenance=cash_labels or {},
             unit_scale=unit_scale,
             currency=currency,
             unit_text=unit_text,
@@ -53,32 +59,33 @@ class FilingExtractor:
         keywords: list[str],
         *,
         fallback_keys: list[str],
-    ) -> Optional[Dict[str, float]]:
+    ) -> Tuple[Optional[Dict[str, float]], Optional[Dict[str, str]]]:
         for table in tables:
             header = " ".join(col.lower() for col in table[0])
             if any(keyword in header for keyword in keywords):
-                values = self._table_to_dict(table)
+                values, labels = self._table_to_dict(table)
                 if values:
-                    return values
+                    return values, labels
 
         # fallback: pick first table containing fallback key in first column
         for table in tables:
             first_column = [row[0].lower() for row in table[1:] if row]
             joined = " ".join(first_column)
             if any(key.lower() in joined for key in fallback_keys):
-                values = self._table_to_dict(table)
+                values, labels = self._table_to_dict(table)
                 if values:
-                    return values
-        return None
+                    return values, labels
+        return None, None
 
-    def _table_to_dict(self, table: List[List[str]]) -> Dict[str, float]:
+    def _table_to_dict(self, table: List[List[str]]) -> Tuple[Dict[str, float], Dict[str, str]]:
         if len(table) < 2:
-            return {}
+            return {}, {}
         header = [cell.strip().lower() for cell in table[0]]
         if len(header) < 2:
-            return {}
+            return {}, {}
         recent_index = len(header) - 1
         statement: Dict[str, float] = {}
+        labels: Dict[str, str] = {}
         for row in table[1:]:
             if len(row) <= recent_index:
                 continue
@@ -86,7 +93,8 @@ class FilingExtractor:
             numeric = self._coerce_number(row[recent_index])
             if key and numeric is not None:
                 statement[key] = numeric
-        return statement
+                labels[key] = " ".join(row[0].split())[:300]
+        return statement, labels
 
     @staticmethod
     def _parse_tables(soup: BeautifulSoup) -> List[List[List[str]]]:
