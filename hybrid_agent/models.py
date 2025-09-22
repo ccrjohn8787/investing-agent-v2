@@ -20,6 +20,8 @@ class Document(BaseModel):
         "Proxy",
         "IR-Deck",
         "Transcript",
+        "Macro",
+        "Market",
     ] = Field(..., description="Document classification")
     title: str = Field(..., description="Document title as provided by the source")
     date: str = Field(..., description="ISO 8601 date the document was filed or published")
@@ -67,6 +69,7 @@ class GateRow(BaseModel):
     pass_rule: str
     result: Literal["Pass", "Soft-Pass", "Fail"]
     flip_trigger: Optional[str] = None
+    evidence: Optional[List[str]] = None
 
 
 class FinalGate(BaseModel):

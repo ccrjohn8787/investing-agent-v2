@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from hybrid_agent.calculators import (
     accruals,
@@ -48,6 +48,23 @@ class MetricBuilder:
         ))
         return metrics
 
+    def metric_from_value(
+        self,
+        name: str,
+        value: Optional[float],
+        *,
+        unit: str,
+        quarter: CompanyQuarter,
+        inputs: Optional[List[str]],
+    ) -> Metric:
+        return self._metric_from_value(
+            name,
+            value,
+            unit=unit,
+            quarter=quarter,
+            inputs=inputs,
+        )
+
     def _metric_from_value(
         self,
         name: str,
@@ -62,8 +79,7 @@ class MetricBuilder:
             metric_value = "ABSTAIN"
         else:
             metric_value = value
-        source_meta = quarter.metadata.get("provenance", {}) if isinstance(quarter.metadata, dict) else {}
-        source_info = source_meta.get(name, {}) if isinstance(source_meta, dict) else {}
+        source_info = self._lookup_provenance(name, quarter)
         source_doc_id = source_info.get("source_doc_id", _SYSTEM_DOC_ID)
         page_or_section = source_info.get("page_or_section", "n/a")
         quote = source_info.get("quote", _SYSTEM_QUOTE)
@@ -80,6 +96,24 @@ class MetricBuilder:
             inputs=inputs,
             metadata={k: v for k, v in source_info.items() if k not in {"source_doc_id", "page_or_section", "quote", "url"}},
         )
+
+    def _lookup_provenance(self, name: str, quarter: CompanyQuarter) -> Dict[str, object]:
+        if not isinstance(quarter.metadata, dict):
+            return {}
+        provenance_sources = []
+        main = quarter.metadata.get("provenance")
+        if isinstance(main, dict):
+            provenance_sources.append(main)
+        valuation_meta = quarter.metadata.get("valuation")
+        if isinstance(valuation_meta, dict):
+            valuation_prov = valuation_meta.get("provenance")
+            if isinstance(valuation_prov, dict):
+                provenance_sources.append(valuation_prov)
+        for source in provenance_sources:
+            info = source.get(name)
+            if isinstance(info, dict):
+                return info
+        return {}
 
     def _build_fcf(self, quarter: CompanyQuarter) -> Metric:
         fcf = quarter.cash_flow.get("FCF")

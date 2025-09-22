@@ -30,3 +30,4 @@ def test_trigger_alerts_via_api():
     payload = response.json()
     assert payload["alerts"]
     assert payload["alerts"][0]["trigger"] == "Gross Margin"
+    assert payload["alerts"][0]["status"] == "BREACH"

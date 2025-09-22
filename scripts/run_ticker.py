@@ -5,10 +5,10 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
+from datetime import date
 from pathlib import Path
 from typing import Optional, Dict
-
-import sys
 
 from dotenv import load_dotenv
 
@@ -21,8 +21,8 @@ load_dotenv()
 from hybrid_agent.agents import AnalystAgent, VerifierAgent
 from hybrid_agent.agents.llm import LLMClient, GrokClient, OpenAIClient
 from hybrid_agent.calculate import CalculationService
+from hybrid_agent.delta.delta_engine import DeltaEngine
 from hybrid_agent.ingest.edgar import EDGARClient
-from hybrid_agent.ingest.service import IngestService
 from hybrid_agent.ingest.store import DocumentStore
 from hybrid_agent.models import Document, CompanyQuarter
 from hybrid_agent.parse import (
@@ -32,10 +32,13 @@ from hybrid_agent.parse import (
 )
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever, TfidfVectorStore
 from hybrid_agent.reports.store import ReportStore
+from hybrid_agent.triggers.monitor import TriggerMonitor
+from hybrid_agent.valuation.config_loader import apply_valuation_config
 
 # Minimal ticker to CIK mapping for demo purposes
 CIK_MAP = {
     "UBER": "1543151",
+    "UPWK": "1627475",
 }
 
 
@@ -89,8 +92,6 @@ def main() -> None:
         raise SystemExit(f"Ticker {ticker} not supported in demo mapping")
 
     store = DocumentStore(Path("data/pit_documents"))
-    ingest_service = IngestService(client=EDGARClient(), store=store)
-
     document = fetch_latest_10k(ticker, store)
 
     facts_client = SECFactsClient()
@@ -103,6 +104,8 @@ def main() -> None:
     extractor = FilingExtractor()
     statement_data = extractor.extract(text_content)
     quarter = _merge_statement_data(quarter, statement_data, document)
+    quarter = apply_valuation_config(quarter, ticker, store=store)
+    quarter.metadata.setdefault("business_model", "marketplace")
 
     # Build retriever index with the downloaded document content (basic chunking)
     index = InMemoryDocumentIndex(chunk_size=120)
@@ -112,24 +115,13 @@ def main() -> None:
     retriever = Retriever(index, vector_store=vector_store)
 
     calc_service = CalculationService()
-    calc_result = calc_service.calculate(quarter)
+    calc_snapshot = calc_service.calculate(quarter)
 
-    metric_map = {metric.name: metric.value for metric in calc_result.metrics}
-
-    def _numeric(name: str) -> Optional[float]:
-        value = metric_map.get(name)
-        return value if isinstance(value, (int, float)) else None
-
-    net_leverage = _numeric("Net Debt / EBITDA") or 0.0
-    roic = _numeric("ROIC") or 0.0
-
-    stage0_rows = [
-        {"gate": "Circle of Competence", "result": "Pass"},
-        {"gate": "Fraud/Controls", "result": "Pass"},
-        {"gate": "Imminent Solvency", "result": "Pass" if net_leverage <= 3 else "Watch"},
-        {"gate": "Valuation", "result": "Pass" if roic >= 0.08 else "Needs Review"},
-        {"gate": "Final Decision Gate", "result": "Pass"},
-    ]
+    metrics_map = {
+        metric.name: metric.value
+        for metric in calc_snapshot.metrics
+        if isinstance(metric.value, (int, float))
+    }
 
     llm_client = _build_llm_client()
     analyst_kwargs = {
@@ -141,22 +133,13 @@ def main() -> None:
         analyst_kwargs["llm_client"] = llm_client
     analyst = AnalystAgent(**analyst_kwargs)
     analyst_result = analyst.analyze(ticker, "2024-09-20", quarter, [document])
-    analyst_result["stage_0"] = stage0_rows
-    provenance_entries = [
-        {
-            "metric": metric.name,
-            "value": metric.value,
-            "document_id": document.id,
-            "doc_type": document.doc_type,
-            "url": document.url,
-        }
-        for metric in calc_result.metrics
-        if isinstance(metric.value, (int, float))
-    ]
-    dossier = {
-        "provenance": provenance_entries,
-        "stage_0": analyst_result.get("stage_0", []),
-    }
+    dossier = analyst_result
+
+    delta_engine = DeltaEngine()
+    delta_payload: Dict[str, Dict[str, float]] = delta_engine.fetch(ticker)
+    trigger_monitor = TriggerMonitor()
+    trigger_alerts = trigger_monitor.evaluate(ticker, metrics_map, date.today())
+    trigger_list = trigger_monitor.list_triggers(ticker)
 
     verifier = VerifierAgent(calc_service, document_store=store)
     verifier_result = verifier.verify(quarter, dossier)
@@ -165,6 +148,9 @@ def main() -> None:
         "analyst": analyst_result,
         "verifier": verifier_result.model_dump(),
         "dossier": dossier,
+        "delta": delta_payload,
+        "triggers": trigger_list,
+        "trigger_alerts": trigger_alerts,
     }
 
     def _convert(item):
@@ -177,10 +163,17 @@ def main() -> None:
         return item
 
     serializable = _convert(payload)
+    analyst_payload = serializable["analyst"]
+    analyst_payload.setdefault("delta", delta_payload)
+    analyst_payload.setdefault("triggers", trigger_list)
+    analyst_payload.setdefault("trigger_alerts", trigger_alerts)
     ReportStore().save_report(
         ticker,
-        serializable["analyst"],
+        analyst_payload,
         serializable["verifier"],
+        delta=delta_payload,
+        triggers=trigger_list,
+        trigger_alerts=trigger_alerts,
     )
     args.output.write_text(json.dumps(serializable, indent=2), encoding="utf-8")
     print(f"Analyst verdict: {analyst_result['output_0']}")

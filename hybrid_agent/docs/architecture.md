@@ -24,11 +24,11 @@
    - `DeltaEngine` stores results via `DeltaStore` (JSON on disk) for later retrieval and dashboard use.
    - `TriggerMonitor` syncs with `TriggerStore`, keeping flip-trigger definitions surviving process restarts.
 7. **Reports & UI**
-   - `ReportStore` captures analyst/verifier outputs per ticker.
-   - `/reports/{ticker}` exposes stored dossiers; `/dashboard` renders a lightweight HTML summary.
+   - `ReportStore` captures analyst/verifier outputs, delta payloads, and trigger metadata per ticker.
+   - `/reports/{ticker}` exposes stored dossiers; `/dashboard` renders a lightweight HTML summary; `/dossier/{ticker}` serves the React bundle (Stage-0/Stage-1, Reverse-DCF, delta, triggers, QA, evidence, provenance) with a plain-HTML fallback when the build is missing.
 8. **API Surface** (`hybrid_agent.api`)
-   - FastAPI app exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, `/triggers`, `/reports/{ticker}`, and `/dashboard` routes.
-   - Dependency injection wires calculation, storage, and retrieval services for testing overrides.
+   - FastAPI app exposes `/ingest`, `/calculate`, `/analyze`, `/verify`, `/delta`, `/triggers`, `/reports/{ticker}`, `/dashboard`, and `/dossier/{ticker}` routes.
+   - Dependency injection wires calculation, storage, retrieval, delta, and trigger services for testing overrides.
 
 ## Data Contracts
 - Centralised in `hybrid_agent/models.py` (Pydantic). All components exchange `Document`, `Metric`, `CompanyQuarter`, `QAResult`, etc., ensuring provenance and type validation.

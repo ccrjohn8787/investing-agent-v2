@@ -1,0 +1,1046 @@
+{
+  "analyst": {
+    "output_0": "Emergent path. Hard gates: FAIL. Final Decision Gate: FAIL. WACC=NA, g=NA, Hurdle IRR=NA.",
+    "stage_0": {
+      "hard": [
+        {
+          "gate": "Circle of Competence",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Disclosures sufficient for analysis",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Revenue > 0 and segment disclosure present",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": [
+            "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+          ]
+        },
+        {
+          "gate": "Fraud/Controls",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Accruals within healthy bounds",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Accruals ratio within +/-10%",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,",
+            "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+          ]
+        },
+        {
+          "gate": "Imminent Solvency",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Company can service near-term obligations",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Net leverage <=4x or TTM FCF > 0",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other",
+            "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+          ]
+        },
+        {
+          "gate": "Valuation",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Returns exceed cost of capital",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system",
+            "n/a"
+          ],
+          "pass_rule": "ROIC >= WACC",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": null
+        },
+        {
+          "gate": "Final Decision Gate",
+          "hard_or_soft": "Hard",
+          "what_it_means": "All hard gates satisfied and business classified as Mature",
+          "metrics_sources": [],
+          "pass_rule": "Path = Mature and prior hard gates pass",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": null
+        }
+      ],
+      "soft": [
+        {
+          "gate": "Accounting Sanity",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Earnings quality remains solid",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Accruals ratio within +/-15%",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by",
+            "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+          ]
+        },
+        {
+          "gate": "Balance-sheet Survival",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Liquidity runway supports thesis",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Positive cash and FCF",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+          ]
+        },
+        {
+          "gate": "Unit Economics",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Contribution margins support scale",
+          "metrics_sources": [
+            "n/a"
+          ],
+          "pass_rule": "Take rate >10%",
+          "result": "Soft-Pass",
+          "flip_trigger": "Revisit unit economics vs plan \u2014 due 2025-12-21",
+          "evidence": null
+        },
+        {
+          "gate": "Industry",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Industry structure remains attractive",
+          "metrics_sources": [],
+          "pass_rule": "Industry TAM and competition remain favorable",
+          "result": "Soft-Pass",
+          "flip_trigger": "Refresh TAM & competitive notes \u2014 due 2025-12-21",
+          "evidence": null
+        },
+        {
+          "gate": "Moat",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Defensible competitive advantages",
+          "metrics_sources": [
+            "n/a"
+          ],
+          "pass_rule": "Evidence of moat remains intact",
+          "result": "Soft-Pass",
+          "flip_trigger": "Review pricing power evidence \u2014 due 2025-12-21",
+          "evidence": [
+            "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information",
+            "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+          ]
+        },
+        {
+          "gate": "Management",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Execution and governance remain strong",
+          "metrics_sources": [],
+          "pass_rule": "No new governance concerns",
+          "result": "Soft-Pass",
+          "flip_trigger": "Check governance disclosures \u2014 due 2025-12-21",
+          "evidence": null
+        }
+      ]
+    },
+    "stage_1": "Latest revenue $0 with free cash flow $114,332,000. ROIC sits at 8.3% with net leverage 0.95x. Valuation inputs unavailable; monitor once market data is loaded.",
+    "provenance": [
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+      },
+      {
+        "intent": "segment_notes",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "supplier_finance",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+      }
+    ],
+    "metrics": [
+      {
+        "metric": "Revenue",
+        "value": 0.0,
+        "unit": "USD",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "FCF",
+        "value": 114332000.0,
+        "unit": "USD",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DSO",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DIH",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DPO",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "CCC",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "Accruals Ratio",
+        "value": -0.030928513231186734,
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "Net Debt / EBITDA",
+        "value": 0.9512174584239702,
+        "unit": "x",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "ROIC",
+        "value": 0.08321807185634054,
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "NRR",
+        "value": "ABSTAIN",
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      }
+    ],
+    "reverse_dcf": {
+      "wacc": {
+        "point": null,
+        "band": null,
+        "cost_of_equity": null,
+        "cost_of_debt_after_tax": null,
+        "weights": null,
+        "inputs": null
+      },
+      "terminal_growth": {
+        "value": null,
+        "inputs": null
+      },
+      "hurdle": {
+        "value": null,
+        "details": null
+      },
+      "base_irr": null,
+      "scenarios": [
+        {
+          "name": "Bear",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        },
+        {
+          "name": "Base",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        },
+        {
+          "name": "Bull",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        }
+      ],
+      "sensitivity": {},
+      "price": null,
+      "shares": null,
+      "net_debt": null,
+      "ttm_fcf": 114332000.0,
+      "fcf_paths": {
+        "Bear": 0.0,
+        "Base": 0.0,
+        "Bull": 0.0
+      },
+      "notes": "Valuation metadata missing; populate to unlock deterministic DCF."
+    },
+    "final_gate": {
+      "variant": {
+        "definition": "Compare current thesis variant vs. consensus; deterministic fallback summarises path status.",
+        "pass_fail": "Watch",
+        "evidence": "Deterministic calculators only; load LLM analysis for richer narrative."
+      },
+      "price_power": {
+        "definition": "Review pricing power excerpts from retrieved evidence.",
+        "pass_fail": "TBD",
+        "evidence": "See evidence intents for pricing power and segment notes."
+      },
+      "owner_eps_path": {
+        "definition": "Track FCF per share vs. hurdle and reverse-DCF outputs.",
+        "pass_fail": "TBD",
+        "evidence": "Base/Bull/Bear IRRs available in reverse DCF block."
+      },
+      "why_now": {
+        "definition": "Reconcile catalyst timing with Stage-0 flip-triggers.",
+        "pass_fail": "TBD",
+        "evidence": "Soft gate flip-triggers hold the monitoring plan."
+      },
+      "kill_switch": {
+        "definition": "Hurdle policy not derived",
+        "pass_fail": "TBD",
+        "evidence": "Define capital-at-risk exit metric alongside hurdle policy."
+      }
+    },
+    "path_reasons": [
+      "Segment disclosure < 8 quarters"
+    ],
+    "provenance_issues": [],
+    "evidence": [
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+      },
+      {
+        "intent": "segment_notes",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "supplier_finance",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+      }
+    ],
+    "delta": {},
+    "triggers": [],
+    "trigger_alerts": []
+  },
+  "verifier": {
+    "status": "BLOCKER",
+    "reasons": [
+      "Hard gate failed: Final Decision Gate",
+      "Hard gate failed: Circle of Competence",
+      "Hard gate failed: Valuation"
+    ]
+  },
+  "dossier": {
+    "output_0": "Emergent path. Hard gates: FAIL. Final Decision Gate: FAIL. WACC=NA, g=NA, Hurdle IRR=NA.",
+    "stage_0": {
+      "hard": [
+        {
+          "gate": "Circle of Competence",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Disclosures sufficient for analysis",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Revenue > 0 and segment disclosure present",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": [
+            "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+          ]
+        },
+        {
+          "gate": "Fraud/Controls",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Accruals within healthy bounds",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Accruals ratio within +/-10%",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,",
+            "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+          ]
+        },
+        {
+          "gate": "Imminent Solvency",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Company can service near-term obligations",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Net leverage <=4x or TTM FCF > 0",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other",
+            "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+          ]
+        },
+        {
+          "gate": "Valuation",
+          "hard_or_soft": "Hard",
+          "what_it_means": "Returns exceed cost of capital",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system",
+            "n/a"
+          ],
+          "pass_rule": "ROIC >= WACC",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": null
+        },
+        {
+          "gate": "Final Decision Gate",
+          "hard_or_soft": "Hard",
+          "what_it_means": "All hard gates satisfied and business classified as Mature",
+          "metrics_sources": [],
+          "pass_rule": "Path = Mature and prior hard gates pass",
+          "result": "Fail",
+          "flip_trigger": null,
+          "evidence": null
+        }
+      ],
+      "soft": [
+        {
+          "gate": "Accounting Sanity",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Earnings quality remains solid",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Accruals ratio within +/-15%",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by",
+            "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+          ]
+        },
+        {
+          "gate": "Balance-sheet Survival",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Liquidity runway supports thesis",
+          "metrics_sources": [
+            "SYSTEM-DERIVED | n/a | https://localhost/system"
+          ],
+          "pass_rule": "Positive cash and FCF",
+          "result": "Pass",
+          "flip_trigger": null,
+          "evidence": [
+            "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+          ]
+        },
+        {
+          "gate": "Unit Economics",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Contribution margins support scale",
+          "metrics_sources": [
+            "n/a"
+          ],
+          "pass_rule": "Take rate >10%",
+          "result": "Soft-Pass",
+          "flip_trigger": "Revisit unit economics vs plan \u2014 due 2025-12-21",
+          "evidence": null
+        },
+        {
+          "gate": "Industry",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Industry structure remains attractive",
+          "metrics_sources": [],
+          "pass_rule": "Industry TAM and competition remain favorable",
+          "result": "Soft-Pass",
+          "flip_trigger": "Refresh TAM & competitive notes \u2014 due 2025-12-21",
+          "evidence": null
+        },
+        {
+          "gate": "Moat",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Defensible competitive advantages",
+          "metrics_sources": [
+            "n/a"
+          ],
+          "pass_rule": "Evidence of moat remains intact",
+          "result": "Soft-Pass",
+          "flip_trigger": "Review pricing power evidence \u2014 due 2025-12-21",
+          "evidence": [
+            "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information",
+            "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+          ]
+        },
+        {
+          "gate": "Management",
+          "hard_or_soft": "Soft",
+          "what_it_means": "Execution and governance remain strong",
+          "metrics_sources": [],
+          "pass_rule": "No new governance concerns",
+          "result": "Soft-Pass",
+          "flip_trigger": "Check governance disclosures \u2014 due 2025-12-21",
+          "evidence": null
+        }
+      ]
+    },
+    "stage_1": "Latest revenue $0 with free cash flow $114,332,000. ROIC sits at 8.3% with net leverage 0.95x. Valuation inputs unavailable; monitor once market data is loaded.",
+    "provenance": [
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+      },
+      {
+        "intent": "segment_notes",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "supplier_finance",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+      }
+    ],
+    "metrics": [
+      {
+        "metric": "Revenue",
+        "value": 0.0,
+        "unit": "USD",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "FCF",
+        "value": 114332000.0,
+        "unit": "USD",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DSO",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DIH",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "DPO",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "CCC",
+        "value": "ABSTAIN",
+        "unit": "days",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "Accruals Ratio",
+        "value": -0.030928513231186734,
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "Net Debt / EBITDA",
+        "value": 0.9512174584239702,
+        "unit": "x",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "ROIC",
+        "value": 0.08321807185634054,
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      },
+      {
+        "metric": "NRR",
+        "value": "ABSTAIN",
+        "unit": "ratio",
+        "period": "MostRecent",
+        "source_doc_id": "SYSTEM-DERIVED",
+        "page_or_section": "n/a",
+        "quote": "Derived from normalized statements",
+        "url": "https://localhost/system"
+      }
+    ],
+    "reverse_dcf": {
+      "wacc": {
+        "point": null,
+        "band": null,
+        "cost_of_equity": null,
+        "cost_of_debt_after_tax": null,
+        "weights": null,
+        "inputs": null
+      },
+      "terminal_growth": {
+        "value": null,
+        "inputs": null
+      },
+      "hurdle": {
+        "value": null,
+        "details": null
+      },
+      "base_irr": null,
+      "scenarios": [
+        {
+          "name": "Bear",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        },
+        {
+          "name": "Base",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        },
+        {
+          "name": "Bull",
+          "fcf_path": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "irr": null
+        }
+      ],
+      "sensitivity": {},
+      "price": null,
+      "shares": null,
+      "net_debt": null,
+      "ttm_fcf": 114332000.0,
+      "fcf_paths": {
+        "Bear": 0.0,
+        "Base": 0.0,
+        "Bull": 0.0
+      },
+      "notes": "Valuation metadata missing; populate to unlock deterministic DCF."
+    },
+    "final_gate": {
+      "variant": {
+        "definition": "Compare current thesis variant vs. consensus; deterministic fallback summarises path status.",
+        "pass_fail": "Watch",
+        "evidence": "Deterministic calculators only; load LLM analysis for richer narrative."
+      },
+      "price_power": {
+        "definition": "Review pricing power excerpts from retrieved evidence.",
+        "pass_fail": "TBD",
+        "evidence": "See evidence intents for pricing power and segment notes."
+      },
+      "owner_eps_path": {
+        "definition": "Track FCF per share vs. hurdle and reverse-DCF outputs.",
+        "pass_fail": "TBD",
+        "evidence": "Base/Bull/Bear IRRs available in reverse DCF block."
+      },
+      "why_now": {
+        "definition": "Reconcile catalyst timing with Stage-0 flip-triggers.",
+        "pass_fail": "TBD",
+        "evidence": "Soft gate flip-triggers hold the monitoring plan."
+      },
+      "kill_switch": {
+        "definition": "Hurdle policy not derived",
+        "pass_fail": "TBD",
+        "evidence": "Define capital-at-risk exit metric alongside hurdle policy."
+      }
+    },
+    "path_reasons": [
+      "Segment disclosure < 8 quarters"
+    ],
+    "provenance_issues": [],
+    "evidence": [
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "pricing_power",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "adversely affect our business and make it difficult to evaluate our future prospects.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">We continue to evolve our business strategy, offerings, and pricing model, as well as our sales, marketing, and brand positioning efforts. We continuously evaluate and revise our current offerings and pricing model and create and test additional offerings, pricing models, features, and services to serve our current and prospective customer base. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Changes in our offerings and pricing model and the continued evolution of our business strategy and brand positioning subject us to a number of uncertainties, including our ability to plan for and project future growth and performance. Creating or modifying offerings is expensive and time consuming, diverts the attention of management, and may"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "eliminated in consolidation. Prior period presentation has been revised to conform to the current period presentation as of December 31, 2024.</span></div></ix:nonNumeric></ix:nonNumeric><ix:nonNumeric contextRef=\"c-1\" name=\"us-gaap:PriorPeriodReclassificationAdjustmentDescription\" id=\"f-378\" escape=\"true\"><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Changes in Presentation</span></div><div style=\"margin-bottom:6pt\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">During the fourth quarter of 2024, the Company elected to change the presentation of certain cash flows on its Consolidated Statement of Cash Flows. The change in Trade and Client Receivables relating to amounts received on behalf of talent to fund their escrow accounts was reclassified from operating activities to financing activities, reflected within the caption Change in escrow fund payable, net. Prior period comparative amounts have been recast to conform to the current period presentation. This change had the impact of increasing cash flow provided by operating activities by"
+      },
+      {
+        "intent": "kpi_definition",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "paid by talent as a percentage of the total amount talent charges clients for services accessed on our Marketplace, and to a lesser extent, client marketplace fees. We also generate revenue through ads and monetization products, including purchases of Connects, talent memberships, and other services, such as foreign currency exchange when clients choose to pay in currencies other than the U.S. dollar. Additionally, we earn interest on funds held on behalf of customers. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#14a800;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:700;line-height:120%\">Marketplace Take Rate</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Marketplace take rate measures the correlation between Marketplace revenue and Marketplace GSV and is calculated by dividing Marketplace revenue by Marketplace GSV. We define Marketplace GSV as GSV derived from our Marketplace offerings. Marketplace take rate is an important metric because"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "debt_footnote",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "Company&#8217;s consolidated balance sheet. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company periodically assesses its portfolio of debt investments for impairment. For debt securities in an unrealized loss position, this assessment first takes into account the Company&#8217;s intent to sell, or whether it is more likely than not that the Company will be required to sell the security before recovery of its amortized cost basis. If either of these criteria are met, the debt security&#8217;s amortized cost basis is written down to fair value through other income, net. For debt securities in an unrealized loss position that do not meet the aforementioned criteria, the Company assesses whether the decline in fair value below the amortized cost basis resulted from a credit loss or other"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_208\">97</a></span></div></td></tr><tr><td colspan=\"6\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%\">Signatures</span></td><td colspan=\"3\" style=\"padding:2px 1pt;text-align:left;vertical-align:bottom\"><div style=\"margin-bottom:6pt;margin-top:1pt;text-align:center\"><span style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\"><a style=\"color:#0000ff;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:100%;text-decoration:underline\" href=\"#i623e1da7972f4f14902e34dd3b69f88e_211\">98</a></span></div></td></tr></table></div><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span><br/></span></div></div></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Unless otherwise expressly stated or the context otherwise requires, references in this Annual Report on Form 10-K, which we refer to as this Annual Report or report, to &#8220;Upwork,&#8221; &#8220;Company,&#8221; &#8220;our,&#8221; &#8220;us,&#8221; and &#8220;we&#8221; and similar references refer to Upwork Inc. and its wholly-owned subsidiaries.</span></div><div style=\"margin-bottom:6pt;margin-top:6pt;text-align:justify\"><span style=\"color:#1f57c3;font-family:'Arial',sans-serif;font-size:10pt;font-weight:700;line-height:120%\">Trademarks, Trade Names, and Service Marks</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Upwork, the Upwork logo, Elance, oDesk, &#8220;Uma, Upwork&#8217;s Mindful AI,&#8221; &#8220;Talent Cloud,&#8221; &#8220;Work Without Limits,&#8221; and other registered or common law trade names, trademarks, or service marks of Upwork appearing in this Annual Report are the property of Upwork. This Annual Report contains additional trade names,"
+      },
+      {
+        "intent": "auditor_opinion",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The information required by this item will be included in our Proxy Statement to be filed with the SEC, within 120 days of the year ended December&#160;31, 2024, and is incorporated herein by reference.</span></div><div style=\"height:45pt;position:relative;width:100%\"><div style=\"bottom:0;position:absolute;width:100%\"><div style=\"margin-bottom:6pt;text-align:center\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">94</span></div></div></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_199\"></div><hr style=\"page-break-after:always\"/><div style=\"min-height:45pt;width:100%\"><div style=\"margin-bottom:6pt;text-align:justify\"><span><br/></span></div></div><div style=\"margin-bottom:6pt\"><table style=\"border-collapse:collapse;display:inline-table;margin-bottom:5pt;vertical-align:text-bottom;width:100.000%\"><tr><td style=\"width:1.0%\"/><td style=\"width:84.280%\"/><td style=\"width:0.1%\"/><td style=\"width:1.0%\"/><td style=\"width:13.520%\"/><td style=\"width:0.1%\"/></tr><tr><td colspan=\"3\" style=\"background-color:#226600;padding:2px 1pt;text-align:left;vertical-align:bottom\"><span style=\"color:#ffffff;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:100%\">PART IV</span></td><td colspan=\"3\" style=\"background-color:#226600;padding:0 1pt\"/></tr></table></div><div id=\"i623e1da7972f4f14902e34dd3b69f88e_202\"></div><div style=\"margin-bottom:6pt;margin-top:6pt\"><span style=\"color:#226600;font-family:'Arial',sans-serif;font-size:12pt;font-weight:700;line-height:120%\">Item 15. Exhibits and Financial Statement Schedules. </span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(a) The following documents are filed as part of this report:</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(1) Financial Statements.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Our consolidated financial statements are listed in the &#8220;Index to Consolidated Financial Statements&#8221; under Part II, Item 8 of this Annual Report on Form 10-K.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">(2) Financial Statement Schedules.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">All schedules are omitted"
+      },
+      {
+        "intent": "segment_notes",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "280)</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">: </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">Improvements to Reportable Segment Disclosures</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">, which is referred to as ASU 2023-07</span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-style:italic;font-weight:400;line-height:120%\">. </span><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">ASU 2023-07 requires public entities to disclose information about their significant expenses and other items by reportable segment on both an interim and annual basis. Public entities with a single reportable segment are required to apply these enhanced disclosure requirements as well as all existing segment and reconciliation requirements under Accounting Standards Codification, which is referred to as ASC, 280 for both interim and annual reporting.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">On December 31, 2024, the Company adopted ASU 2023-07, effective as of January 1, 2024. As a result, the Company has updated its segment disclosures in &#8220;Note 15 &#8211; Segment Information,&#8221; providing more detailed information"
+      },
+      {
+        "intent": "supplier_finance",
+        "document_id": "UPWK-20250213-4040b225e659",
+        "ticker": "UPWK",
+        "document_type": "10-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/1627475/000162747525000011/upwk-20241231.htm",
+        "excerpt": "third-party on behalf of the client or for the services performed by talent that are employed by the third-party staffing providers. Therefore, the Company is not considered the principal for these services. The Company recognizes the service fees for each distinct service period when it has the contractual right to bill for the services.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">Certain of the Company&#8217;s Marketplace offerings include revenue sharing arrangements under which the Company generates a revenue share as a percentage of the fees charged by certain financial institutions to talent for payment withdrawals. These arrangements are considered a single performance obligation comprised of variable consideration and are recognized over time based on transactions processed.</span></div><div style=\"margin-bottom:6pt;text-align:justify\"><span style=\"color:#000000;font-family:'Arial',sans-serif;font-size:10pt;font-weight:400;line-height:120%\">The Company earns interest on a portion of customer"
+      }
+    ]
+  },
+  "delta": {},
+  "triggers": [],
+  "trigger_alerts": []
+}

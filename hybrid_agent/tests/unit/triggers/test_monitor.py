@@ -22,3 +22,9 @@ def test_trigger_monitor_flags_breach():
     assert alerts
     assert alerts[0]["trigger"] == "Gross Margin"
     assert "breach" in alerts[0]["message"].lower()
+    assert alerts[0]["status"] == "BREACH"
+    assert "days_remaining" in alerts[0]
+
+    listing = monitor.list_triggers("AAPL")
+    assert listing
+    assert listing[0]["trigger"] == "Gross Margin"

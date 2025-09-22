@@ -1,12 +1,15 @@
 """FastAPI surface for the hybrid investment research agent."""
 from __future__ import annotations
 
+import json
+from datetime import date as _date
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 import urllib.request
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, HttpUrl
 
 from hybrid_agent.calculate.service import CalculationService
@@ -23,6 +26,10 @@ from hybrid_agent.reports.store import ReportStore
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever, TfidfVectorStore
 
 app = FastAPI()
+
+_FRONTEND_DIST = Path(__file__).resolve().parent / "assets/dossier/dist"
+if _FRONTEND_DIST.exists():
+    app.mount("/dossier/static", StaticFiles(directory=_FRONTEND_DIST), name="dossier_static")
 
 
 class IngestDocumentPayload(BaseModel):
@@ -120,11 +127,28 @@ class AnalyzeDocument(Document):
     content: Optional[str] = None
 
 
+def get_delta_engine() -> DeltaEngine:
+    engine = getattr(app.state, "delta_engine", None)
+    if engine is None:
+        engine = DeltaEngine(store=DeltaStore())
+        app.state.delta_engine = engine
+    return engine
+
+
+def get_trigger_monitor() -> TriggerMonitor:
+    monitor = getattr(app.state, "trigger_monitor", None)
+    if monitor is None:
+        monitor = TriggerMonitor(store=TriggerStore())
+        app.state.trigger_monitor = monitor
+    return monitor
+
+
 class AnalyzeRequest(BaseModel):
     ticker: str
     today: str
     quarter: CompanyQuarter
     documents: List[AnalyzeDocument]
+    history: Optional[List[CompanyQuarter]] = None
 
 
 class AnalyzeResponse(BaseModel):
@@ -137,9 +161,12 @@ class AnalyzeResponse(BaseModel):
     final_gate: dict
     path_reasons: List[str]
     provenance_issues: List[str]
+    metrics: List[dict]
+    delta: Dict[str, dict]
+    triggers: List[dict]
+    trigger_alerts: List[dict]
 
 
-@app.post("/analyze", response_model=AnalyzeResponse)
 def get_report_store() -> ReportStore:
     store = getattr(app.state, "report_store", None)
     if store is None:
@@ -148,10 +175,13 @@ def get_report_store() -> ReportStore:
     return store
 
 
+@app.post("/analyze", response_model=AnalyzeResponse)
 def analyze(
     request: AnalyzeRequest,
     calc_service: CalculationService = Depends(get_calculation_service),
     report_store: ReportStore = Depends(get_report_store),
+    delta_engine: DeltaEngine = Depends(get_delta_engine),
+    trigger_monitor: TriggerMonitor = Depends(get_trigger_monitor),
 ) -> AnalyzeResponse:
     index = InMemoryDocumentIndex()
     vector_store = TfidfVectorStore()
@@ -164,6 +194,8 @@ def analyze(
             vector_store.add(doc, doc_payload.content)
     retriever = Retriever(index, vector_store=vector_store)
     document_store = get_document_store()
+    history_objects = request.history or []
+    history_models = [CompanyQuarter(**item.model_dump()) for item in history_objects]
     agent = AnalystAgent(
         calculation_service=calc_service,
         retriever=retriever,
@@ -174,10 +206,47 @@ def analyze(
         today=request.today,
         quarter=CompanyQuarter(**request.quarter.model_dump()),
         documents=documents,
+        history=history_models,
     )
+    calc_snapshot = calc_service.calculate(CompanyQuarter(**request.quarter.model_dump()), history_models)
+    delta_payload: Dict[str, dict] = {}
+    if history_models:
+        prior = history_models[-1]
+        year_index = -4 if len(history_models) >= 4 else 0
+        year_ago = history_models[year_index]
+        delta_payload = delta_engine.compute(calc_snapshot.quarter, prior, year_ago)
+
+    metrics_map = {
+        metric.name: metric.value
+        for metric in calc_snapshot.metrics
+        if isinstance(metric.value, (int, float))
+    }
+    trigger_alerts: List[dict] = []
+    try:
+        today_date = _date.fromisoformat(request.today)
+    except ValueError:
+        today_date = _date.today()
+    if metrics_map:
+        trigger_alerts = trigger_monitor.evaluate(request.ticker, metrics_map, today_date)
+    trigger_list = trigger_monitor.list_triggers(request.ticker)
     # Persist analyst snapshot without verifier info yet
-    report_store.save_report(request.ticker, result, {"status": "PENDING", "reasons": []})
-    return AnalyzeResponse(**result)
+    report_store.save_report(
+        request.ticker,
+        result,
+        {"status": "PENDING", "reasons": []},
+        delta=delta_payload,
+        triggers=trigger_list,
+        trigger_alerts=trigger_alerts,
+    )
+    enriched = dict(result)
+    enriched.update(
+        {
+            "delta": delta_payload,
+            "triggers": trigger_list,
+            "trigger_alerts": trigger_alerts,
+        }
+    )
+    return AnalyzeResponse(**enriched)
 
 
 class VerifyRequest(BaseModel):
@@ -217,14 +286,6 @@ class DeltaResponse(BaseModel):
     deltas: dict
 
 
-def get_delta_engine() -> DeltaEngine:
-    engine = getattr(app.state, "delta_engine", None)
-    if engine is None:
-        engine = DeltaEngine(store=DeltaStore())
-        app.state.delta_engine = engine
-    return engine
-
-
 @app.post("/delta", response_model=DeltaResponse)
 def compute_delta(request: DeltaRequest, engine: DeltaEngine = Depends(get_delta_engine)) -> DeltaResponse:
     result = engine.compute(
@@ -259,14 +320,6 @@ class TriggerResponse(BaseModel):
     alerts: List[dict]
 
 
-def get_trigger_monitor() -> TriggerMonitor:
-    monitor = getattr(app.state, "trigger_monitor", None)
-    if monitor is None:
-        monitor = TriggerMonitor(store=TriggerStore())
-        app.state.trigger_monitor = monitor
-    return monitor
-
-
 @app.post("/triggers", response_model=dict)
 def upsert_trigger(request: TriggerUpsertRequest, monitor: TriggerMonitor = Depends(get_trigger_monitor)) -> dict:
     monitor.upsert(
@@ -287,6 +340,12 @@ def evaluate_triggers(request: TriggerEvaluateRequest, monitor: TriggerMonitor =
         today=_parse_date(request.today),
     )
     return TriggerResponse(alerts=alerts)
+
+
+@app.get("/triggers/{ticker}", response_model=TriggerResponse)
+def list_triggers_endpoint(ticker: str, monitor: TriggerMonitor = Depends(get_trigger_monitor)) -> TriggerResponse:
+    triggers = monitor.list_triggers(ticker)
+    return TriggerResponse(alerts=triggers)
 
 
 @app.get("/reports/{ticker}", response_model=dict)
@@ -334,7 +393,93 @@ def dashboard(store: ReportStore = Depends(get_report_store)) -> HTMLResponse:
     return HTMLResponse(content=html)
 
 
+@app.get("/dossier/{ticker}", response_class=HTMLResponse)
+def dossier_view(ticker: str, store: ReportStore = Depends(get_report_store)) -> HTMLResponse:
+    report = store.fetch(ticker)
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    dist = _frontend_dist()
+    if dist is None:
+        html = _fallback_dossier_html(ticker, report)
+        return HTMLResponse(content=html)
+    manifest = _load_manifest(dist)
+    if manifest is None:
+        html = _fallback_dossier_html(ticker, report)
+        return HTMLResponse(content=html)
+    entry = manifest.get("src/main.tsx") or manifest.get("src/main.ts")
+    if not entry:
+        html = _fallback_dossier_html(ticker, report)
+        return HTMLResponse(content=html)
+
+    scripts = [entry.get("file")]
+    styles = entry.get("css", [])
+    data_json = json.dumps(report)
+    ticker_upper = ticker.upper()
+    css_tags = "\n".join(
+        f'<link rel="stylesheet" href="/dossier/static/{href}">' for href in styles
+    )
+    script_tags = "\n".join(
+        f'<script type="module" src="/dossier/static/{src}"></script>'
+        for src in scripts
+        if src
+    )
+    preload = (
+        f"<script>window.__DOSSIER__ = {data_json};"
+        f" window.__DOSSIER_TICKER__ = '{ticker_upper}';</script>"
+    )
+    html = (
+        "<!DOCTYPE html>\n"
+        "<html lang=\"en\">\n"
+        "  <head>\n"
+        "    <meta charset=\"UTF-8\" />\n"
+        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+        f"    <title>Dossier — {ticker_upper}</title>\n"
+        f"    {css_tags}\n"
+        "  </head>\n"
+        "  <body>\n"
+        "    <div id=\"root\"></div>\n"
+        f"    {preload}\n"
+        f"    {script_tags}\n"
+        "  </body>\n"
+        "</html>"
+    )
+    return HTMLResponse(content=html)
+
+
 def _parse_date(value: str):
     from datetime import datetime
 
     return datetime.fromisoformat(value).date()
+
+
+def _frontend_dist() -> Optional[Path]:
+    if _FRONTEND_DIST.exists():
+        return _FRONTEND_DIST
+    return None
+
+
+def _load_manifest(dist: Path) -> Optional[dict]:
+    manifest_path = dist / "manifest.json"
+    if not manifest_path.exists():
+        return None
+    try:
+        return json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def _fallback_dossier_html(ticker: str, report: dict) -> str:
+    data_json = json.dumps(report, indent=2)
+    return (
+        "<!DOCTYPE html>\n"
+        "<html lang=\"en\">\n"
+        "  <head><meta charset=\"UTF-8\" /><title>Dossier Fallback</title></head>\n"
+        "  <body>\n"
+        f"    <h1>Dossier for {ticker.upper()}</h1>\n"
+        "    <p>React build not found. Run <code>npm install</code> and <code>npm run build</code> inside <code>hybrid_agent/assets/dossier</code>.</p>\n"
+        "    <pre>"
+        f"{data_json}"
+        "</pre>\n"
+        "  </body>\n"
+        "</html>"
+    )

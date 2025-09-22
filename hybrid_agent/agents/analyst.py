@@ -6,13 +6,13 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
 from hybrid_agent.calculate.service import CalculationService
-from hybrid_agent.calculators.metric_builder import MetricBuilder
 from hybrid_agent.gates import StageZeroBuilder, determine_path
 from hybrid_agent.ingest.store import DocumentStore
 from hybrid_agent.models import CompanyQuarter, Document, Metric, GateRow
 from hybrid_agent.provenance.validator import ProvenanceValidator
 from hybrid_agent.rag import InMemoryDocumentIndex, Retriever
 from hybrid_agent.rag.planner import RetrievalPlanner
+from hybrid_agent.valuation import ValuationBundle
 from .llm import LLMClient, DummyLLMClient
 
 
@@ -88,9 +88,17 @@ class AnalystAgent:
             normalized_quarter.metadata,
             path,
         )
+        evidence = self._collect_evidence(documents, normalized_quarter, path)
+        self._attach_stage0_evidence(stage0_rows, evidence)
         stage0_payload = {key: [row.model_dump() for row in rows] for key, rows in stage0_rows.items()}
         metrics_payload = [self._metric_payload(metric) for metric in calc_result.metrics]
-        fallback = self._fallback_payload(path, calc_result.metrics, stage0_payload, metrics_payload)
+        fallback = self._fallback_payload(
+            path,
+            calc_result.metrics,
+            stage0_payload,
+            metrics_payload,
+            calc_result.valuation,
+        )
 
         merged = {
             "output_0": llm_payload.get("output_0") or fallback["output_0"],
@@ -104,7 +112,6 @@ class AnalystAgent:
             "provenance_issues": provenance_issues,
         }
 
-        evidence = self._collect_evidence(documents, normalized_quarter, path)
         merged.setdefault("provenance", []).extend(evidence)
         merged["evidence"] = evidence
         return merged
@@ -139,12 +146,50 @@ class AnalystAgent:
                 snippets.append({"intent": intent, **result})
         return snippets
 
+    def _attach_stage0_evidence(
+        self,
+        stage0_rows: Dict[str, List[GateRow]],
+        evidence: List[Dict[str, str]],
+    ) -> None:
+        if not evidence:
+            return
+        intent_map = {
+            "pricing_power": "Moat",
+            "kpi_definition": "Accounting Sanity",
+            "debt_footnote": "Imminent Solvency",
+            "auditor_opinion": "Fraud/Controls",
+            "segment_notes": "Circle of Competence",
+            "supplier_finance": "Balance-sheet Survival",
+        }
+        aggregated: Dict[str, List[str]] = {}
+        for item in evidence:
+            intent = item.get("intent")
+            if not intent:
+                continue
+            gate = intent_map.get(intent)
+            if not gate:
+                continue
+            excerpt = item.get("excerpt") or item.get("text")
+            if not excerpt:
+                continue
+            aggregated.setdefault(gate, []).append(excerpt)
+
+        if not aggregated:
+            return
+
+        for bucket in (stage0_rows.get("hard", []), stage0_rows.get("soft", [])):
+            for row in bucket:
+                snippets = aggregated.get(row.gate)
+                if snippets:
+                    row.evidence = snippets
+
     def _fallback_payload(
         self,
         path: str,
         metrics: List[Metric],
         stage0: Dict[str, List[Dict[str, object]]],
         metrics_payload: List[Dict[str, object]],
+        valuation: Optional[ValuationBundle],
     ) -> Dict[str, object]:
         metric_map = {metric.name: metric for metric in metrics}
 
@@ -159,48 +204,11 @@ class AnalystAgent:
         roic_value = numeric("ROIC")
         leverage = numeric("Net Debt / EBITDA")
 
-        headline = (
-            f"{path} path. Hard gates: PASS. Final Decision Gate: WATCH. "
-            "WACC=NA, g=NA, Hurdle IRR=NA."
-        )
+        headline = self._headline(stage0, path, valuation)
         stage_0 = stage0
-        stage_1 = (
-            "Latest revenue ${:,.0f} with free cash flow ${:,.0f}. ROIC sits at {:.1%} "
-            "with net leverage {:.2f}x, suggesting solvency is stable but dependent on disciplined capital allocation."  # noqa: E501
-        ).format(revenue, fcf, roic_value, leverage)
-
-        base_wacc = 0.08 if leverage <= 1.5 else 0.09
-        wacc_band = [round(base_wacc - 0.01, 4), round(base_wacc + 0.01, 4)]
-        terminal_g = 0.03
-        hurdle = 0.12 if path == "Mature" else 0.15
-        growth_cases = {"Bear": 0.02, "Base": 0.05, "Bull": 0.08}
-        scenarios: List[Dict[str, object]] = []
-        for name, growth in growth_cases.items():
-            if fcf:
-                path_values = [round(fcf * (1 + growth) ** i, 2) for i in range(1, 6)]
-            else:
-                path_values = [0.0] * 5
-            irr = round(max(base_wacc - 0.015 + growth, 0), 4)
-            scenarios.append({"name": name, "fcf_path": path_values, "irr": irr})
-
-        reverse_dcf = {
-            "wacc": base_wacc,
-            "wacc_band": wacc_band,
-            "terminal_g": terminal_g,
-            "hurdle_irr": hurdle,
-            "scenarios": scenarios,
-            "assumptions": {
-                "starting_fcf": fcf,
-                "growth_cases": growth_cases,
-            },
-        }
-        final_gate = {
-            "variant": {"definition": "Growth optionality requires execution"},
-            "price_power": {"definition": "Assess rider supply-demand balance quarterly"},
-            "owner_eps_path": {"definition": "Track FCF per share vs. buybacks"},
-            "why_now": {"definition": "Monitor profitability inflection"},
-            "kill_switch": {"definition": "Cut exposure if FCF turns negative for two quarters"},
-        }
+        stage_1 = self._stage_one_summary(revenue, fcf, roic_value, leverage, valuation)
+        reverse_dcf = self._reverse_dcf_payload(valuation, fcf)
+        final_gate = self._final_gate_payload(path, valuation)
         return {
             "output_0": headline,
             "stage_0": stage_0,
@@ -210,6 +218,181 @@ class AnalystAgent:
             "metrics": metrics_payload,
             "provenance": metrics_payload,
             "evidence": [],
+        }
+
+    def _headline(
+        self,
+        stage0: Dict[str, List[Dict[str, object]]],
+        path: str,
+        valuation: Optional[ValuationBundle],
+    ) -> str:
+        hard_rows = stage0.get("hard", []) if isinstance(stage0, dict) else []
+        hard_pass = all(row.get("result") == "Pass" for row in hard_rows if isinstance(row, dict))
+        hard_text = "PASS" if hard_pass else "FAIL"
+        final_row = next((row for row in hard_rows if row.get("gate") == "Final Decision Gate"), {})
+        final_text = str(final_row.get("result", "WATCH")).upper()
+        if valuation:
+            wacc_point = valuation.wacc.point
+            lower = valuation.wacc.lower
+            upper = valuation.wacc.upper
+            terminal_g = valuation.terminal_growth
+            hurdle = valuation.hurdle
+            return (
+                f"{path} path. Hard gates: {hard_text}. Final Decision Gate: {final_text}. "
+                f"WACC={wacc_point:.1%} ({lower:.1%}–{upper:.1%}), g={terminal_g:.1%}, "
+                f"Hurdle IRR={hurdle:.1%}."
+            )
+        return (
+            f"{path} path. Hard gates: {hard_text}. Final Decision Gate: {final_text}. "
+            "WACC=NA, g=NA, Hurdle IRR=NA."
+        )
+
+    def _stage_one_summary(
+        self,
+        revenue: float,
+        fcf: float,
+        roic_value: float,
+        leverage: float,
+        valuation: Optional[ValuationBundle],
+    ) -> str:
+        base = (
+            "Latest revenue ${:,.0f} with free cash flow ${:,.0f}. ROIC sits at {:.1%} "
+            "with net leverage {:.2f}x."
+        ).format(revenue, fcf, roic_value, leverage)
+        if valuation:
+            return (
+                f"{base} Deterministic WACC is {valuation.wacc.point:.1%} "
+                f"(band {valuation.wacc.lower:.1%}-{valuation.wacc.upper:.1%}); "
+                f"terminal growth anchored at {valuation.terminal_growth:.1%} "
+                f"with hurdle IRR {valuation.hurdle:.1%}."
+            )
+        return base + " Valuation inputs unavailable; monitor once market data is loaded."
+
+    def _reverse_dcf_payload(
+        self,
+        valuation: Optional[ValuationBundle],
+        fallback_fcf: float,
+    ) -> Dict[str, object]:
+        if not valuation:
+            growth_cases = {"Bear": 0.0, "Base": 0.0, "Bull": 0.0}
+            scenarios = [
+                {"name": name, "fcf_path": [0.0] * 5, "irr": None}
+                for name in ("Bear", "Base", "Bull")
+            ]
+            return {
+                "wacc": {
+                    "point": None,
+                    "band": None,
+                    "cost_of_equity": None,
+                    "cost_of_debt_after_tax": None,
+                    "weights": None,
+                    "inputs": None,
+                },
+                "terminal_growth": {"value": None, "inputs": None},
+                "hurdle": {"value": None, "details": None},
+                "base_irr": None,
+                "scenarios": scenarios,
+                "sensitivity": {},
+                "price": None,
+                "shares": None,
+                "net_debt": None,
+                "ttm_fcf": fallback_fcf,
+                "fcf_paths": growth_cases,
+                "notes": "Valuation metadata missing; populate to unlock deterministic DCF.",
+            }
+
+        irr = valuation.irr_analysis
+        scenarios_payload: List[Dict[str, object]] = [
+            {
+                "name": "Base",
+                "fcf_path": list(valuation.fcf_paths.get("Base", ())),
+                "irr": irr.irr,
+            }
+        ]
+        for scenario in irr.scenarios:
+            scenarios_payload.append(
+                {
+                    "name": scenario.name,
+                    "fcf_path": list(scenario.fcf_path),
+                    "irr": scenario.irr,
+                }
+            )
+
+        return {
+            "wacc": {
+                "point": valuation.wacc.point,
+                "band": [valuation.wacc.lower, valuation.wacc.upper],
+                "cost_of_equity": valuation.wacc.cost_of_equity,
+                "cost_of_debt_after_tax": valuation.wacc.cost_of_debt_after_tax,
+                "weights": valuation.wacc.weights,
+                "inputs": valuation.wacc.inputs,
+            },
+            "terminal_growth": {
+                "value": valuation.terminal_growth,
+                "inputs": valuation.terminal_inputs,
+            },
+            "hurdle": {
+                "value": valuation.hurdle,
+                "details": valuation.hurdle_details,
+            },
+            "base_irr": irr.irr,
+            "scenarios": scenarios_payload,
+            "sensitivity": irr.sensitivity,
+            "price": valuation.price,
+            "shares": valuation.shares,
+            "net_debt": valuation.net_debt,
+            "ttm_fcf": valuation.ttm_fcf,
+            "fcf_paths": {name: list(path) for name, path in valuation.fcf_paths.items()},
+            "notes": valuation.notes,
+        }
+
+    def _final_gate_payload(
+        self,
+        path: str,
+        valuation: Optional[ValuationBundle],
+    ) -> Dict[str, Dict[str, str]]:
+        hurdle_text = "Hurdle policy not derived"
+        if valuation:
+            details = valuation.hurdle_details
+            base = details.get("base")
+            adj = details.get("adjustment_bps")
+            rationale = details.get("rationale", "")
+            if isinstance(base, (int, float)):
+                base_display = f"{float(base):.1%}"
+            else:
+                base_display = str(base)
+            if isinstance(adj, (int, float)):
+                adj_display = f"{float(adj):.0f}"
+            else:
+                adj_display = str(adj)
+            hurdle_text = f"Base {base_display}, adjustment {adj_display} bps. {rationale}"
+
+        return {
+            "variant": {
+                "definition": "Compare current thesis variant vs. consensus; deterministic fallback summarises path status.",
+                "pass_fail": "Pass" if path == "Mature" else "Watch",
+                "evidence": "Deterministic calculators only; load LLM analysis for richer narrative.",
+            },
+            "price_power": {
+                "definition": "Review pricing power excerpts from retrieved evidence.",
+                "pass_fail": "TBD",
+                "evidence": "See evidence intents for pricing power and segment notes.",
+            },
+            "owner_eps_path": {
+                "definition": "Track FCF per share vs. hurdle and reverse-DCF outputs.",
+                "pass_fail": "TBD",
+                "evidence": "Base/Bull/Bear IRRs available in reverse DCF block.",
+            },
+            "why_now": {
+                "definition": "Reconcile catalyst timing with Stage-0 flip-triggers.",
+                "pass_fail": "TBD",
+                "evidence": "Soft gate flip-triggers hold the monitoring plan.",
+            },
+            "kill_switch": {
+                "definition": hurdle_text,
+                "pass_fail": "TBD",
+                "evidence": "Define capital-at-risk exit metric alongside hurdle policy.",
+            },
         }
 
     def _metric_payload(self, metric: Metric) -> Dict[str, object]:

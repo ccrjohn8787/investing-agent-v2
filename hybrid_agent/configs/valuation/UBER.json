@@ -1,0 +1,103 @@
+{
+  "valuation": {
+    "risk_free_rate": 0.03,
+    "equity_risk_premium": 0.04,
+    "beta": 0.9,
+    "cost_of_debt": 0.04,
+    "tax_rate": 0.21,
+    "market_equity_value": 144900000000.0,
+    "market_debt_value": 6000000000.0,
+    "equity_adjustment_bps": -25.0,
+    "share_price": 69.0,
+    "shares_diluted": 2100000000.0,
+    "net_debt": -1000000000.0,
+    "terminal_inputs": {
+      "inflation": 0.022,
+      "real_gdp": 0.015
+    },
+    "hurdle": {
+      "base": 0.15,
+      "adjustment_bps": -150.0,
+      "rationale": "Scale marketplace with positive cash generation merits 150 bps reduction from base 15% hurdle."
+    },
+    "fcf_paths": {
+      "Base": [
+        5051000000.0,
+        5556000000.0,
+        6112000000.0,
+        6723000000.0,
+        7395000000.0
+      ],
+      "Bull": [
+        5051000000.0,
+        5809000000.0,
+        6680000000.0,
+        7682000000.0,
+        8834000000.0
+      ],
+      "Bear": [
+        5051000000.0,
+        5303000000.0,
+        5568000000.0,
+        5846000000.0,
+        6138000000.0
+      ]
+    },
+    "notes": "Five-year FCF scenarios extend 2024 TTM owner-earnings with margin expansion pacing guidance and delivery mix improvements."
+  },
+  "provenance": {
+    "WACC-point": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Risk-free rate (UST10Y) 31-Dec-2024: 3.00%. Damodaran implied ERP Jan-2025: 4.00%. Levered beta (2Y weekly vs SPX): 0.90.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "WACC-lower": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Risk-free rate (UST10Y) 31-Dec-2024: 3.00%. Damodaran implied ERP Jan-2025: 4.00%. Levered beta (2Y weekly vs SPX): 0.90.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "WACC-upper": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Risk-free rate (UST10Y) 31-Dec-2024: 3.00%. Damodaran implied ERP Jan-2025: 4.00%. Levered beta (2Y weekly vs SPX): 0.90.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "Cost of Equity": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Risk-free rate (UST10Y) 31-Dec-2024: 3.00%. Damodaran implied ERP Jan-2025: 4.00%. Levered beta (2Y weekly vs SPX): 0.90.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "Cost of Debt (after tax)": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Pretax cost of debt (interest / avg debt): 4.00%. Cash tax rate assumption: 21%.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "Terminal Growth": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Inflation anchor: 2.2%. Real GDP anchor: 1.5%.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    },
+    "Hurdle IRR": {
+      "source_doc_id": "MACRO-UBER-VALUATION-2024",
+      "page_or_section": "Valuation Inputs",
+      "quote": "Base hurdle: 15%. Hurdle policy adjustment: -150 bps for mature marketplace.",
+      "url": "https://research.hybridagent.local/uber-valuation-2024"
+    }
+  },
+  "documents": [
+    {
+      "id": "MACRO-UBER-VALUATION-2024",
+      "ticker": "MACRO",
+      "doc_type": "Macro",
+      "title": "Uber Valuation Inputs 2024-12-31",
+      "date": "2024-12-31",
+      "url": "https://research.hybridagent.local/uber-valuation-2024",
+      "content": "Risk-free rate (UST10Y) 31-Dec-2024: 3.00%. Damodaran implied ERP Jan-2025: 4.00%. Levered beta (2Y weekly vs SPX): 0.90. Pretax cost of debt (interest / avg debt): 4.00%. Cash tax rate assumption: 21%. Base hurdle: 15%. Hurdle policy adjustment: -150 bps for mature marketplace. Equity adjustment applied: -25 bps for scale network. Diluted shares: 2.10 billion. Share price (close 31-Dec-2024): $69.00. Market cap: 144,900,000,000 USD. Market value of interest-bearing debt: 6,000,000,000 USD. Inflation anchor: 2.2%. Real GDP anchor: 1.5%. Base FCF (USD millions): 5,051; 5,556; 6,112; 6,723; 7,395. Bull FCF (USD millions): 5,051; 5,809; 6,680; 7,682; 8,834. Bear FCF (USD millions): 5,051; 5,303; 5,568; 5,846; 6,138."
+    }
+  ]
+}

@@ -4,7 +4,7 @@ pydantic
 pytest
 pytest-cov
 requests
-httpx
+httpx==0.27.2
 pandas
 beautifulsoup4
 lxml

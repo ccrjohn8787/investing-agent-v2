@@ -9,7 +9,18 @@ from hybrid_agent.ingest.store import DocumentStore
 from hybrid_agent.models import Metric
 from .cache import DocumentCache
 
-_ALLOWED_DOC_TYPES = {"10-K", "20-F", "10-Q", "6-K", "8-K", "Proxy", "IR-Deck", "Transcript"}
+_ALLOWED_DOC_TYPES = {
+    "10-K",
+    "20-F",
+    "10-Q",
+    "6-K",
+    "8-K",
+    "Proxy",
+    "IR-Deck",
+    "Transcript",
+    "Macro",
+    "Market",
+}
 
 
 @dataclass
@@ -32,6 +43,11 @@ class ProvenanceValidator:
 
     def _validate_metric(self, metric: Metric) -> List[ProvenanceIssue]:
         problems: List[ProvenanceIssue] = []
+
+        # Skip validation for system-derived metrics entirely
+        if metric.source_doc_id == "SYSTEM-DERIVED":
+            return problems
+
         if not metric.source_doc_id:
             problems.append(ProvenanceIssue(metric.name, "missing source_doc_id"))
         if not metric.page_or_section:

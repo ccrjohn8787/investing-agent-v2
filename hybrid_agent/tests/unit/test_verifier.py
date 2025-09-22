@@ -144,3 +144,81 @@ def test_verifier_blocks_non_primary_source(tmp_path):
     result = verifier.verify(quarter, dossier, history)
     assert result.status == "BLOCKER"
     assert any("quote not found" in reason.lower() for reason in result.reasons)
+
+
+def test_verifier_blocks_share_mismatch(tmp_path):
+    store = DocumentStore(tmp_path)
+    doc = Document(
+        id="TEST-DOC-3",
+        ticker="TEST",
+        doc_type="10-K",
+        title="Test",
+        date="2024-02-01",
+        url="https://example.com/10k",
+        pit_hash="hash3",
+    )
+    store.save(doc, b"Shares disclosure")
+
+    quarter = _quarter("2024Q2")
+    quarter.metadata["valuation"] = {"shares_diluted": 1_000_000.0}
+    quarter.metadata["provenance"] = {
+        "Revenue": _provenance_entry(doc, "Revenue grew 20 percent year over year"),
+        "FCF": _provenance_entry(doc, "Revenue grew 20 percent year over year"),
+        "EBIT": _provenance_entry(doc, "Revenue grew 20 percent year over year"),
+    }
+
+    calc_service = CalculationService()
+    verifier = VerifierAgent(calc_service, document_store=store)
+
+    dossier = {
+        "output_0": "Mature path. Hard gates: PASS.",
+        "stage_0": {"hard": [{"gate": "Circle of Competence", "result": "Pass"}]},
+        "metrics": [],
+        "reverse_dcf": {"shares": 1_500_000.0, "net_debt": 10.0},
+        "path_reasons": [],
+        "provenance_issues": [],
+    }
+
+    result = verifier.verify(quarter, dossier)
+    assert result.status == "BLOCKER"
+    assert any("shares" in reason.lower() for reason in result.reasons)
+
+
+def test_verifier_blocks_subscription_metric_for_marketplace(tmp_path):
+    quarter = _quarter("2024Q2")
+    quarter.metadata["business_model"] = "marketplace"
+
+    calc_service = CalculationService()
+    calc_result = calc_service.calculate(quarter)
+    metrics_payload = [
+        {
+            "metric": metric.name,
+            "value": metric.value,
+            "source_doc_id": metric.source_doc_id,
+        }
+        for metric in calc_result.metrics
+        if isinstance(metric.value, (int, float))
+    ]
+    metrics_payload.append({"metric": "NRR", "value": 1.05})
+
+    verifier = VerifierAgent(calc_service)
+
+    dossier = {
+        "output_0": "Emergent path. Hard gates: PASS.",
+        "stage_0": {
+            "hard": [
+                {"gate": "Circle of Competence", "result": "Pass"},
+                {"gate": "Fraud/Controls", "result": "Pass"},
+                {"gate": "Imminent Solvency", "result": "Pass"},
+                {"gate": "Valuation", "result": "Pass"},
+                {"gate": "Final Decision Gate", "result": "Pass"},
+            ]
+        },
+        "metrics": metrics_payload,
+        "path_reasons": ["TTM FCF <= 0"],
+        "provenance_issues": [],
+    }
+
+    result = verifier.verify(quarter, dossier)
+    assert result.status == "BLOCKER"
+    assert any("subscription metric" in reason.lower() for reason in result.reasons)

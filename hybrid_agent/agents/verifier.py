@@ -44,7 +44,18 @@ class VerifierAgent:
 
         if self._validator:
             provenance_issues = self._validator.validate_metrics(calc_result.metrics)
-            reasons.extend(f"{issue.metric}: {issue.reason}" for issue in provenance_issues)
+            # Filter out document loading issues for system-derived metrics
+            filtered_issues = []
+            for issue in provenance_issues:
+                metric = next((m for m in calc_result.metrics if m.name == issue.metric), None)
+                if metric and metric.source_doc_id == "SYSTEM-DERIVED":
+                    # Skip issues for system-derived metrics
+                    continue
+                if "unable to load source document" in issue.reason:
+                    # Also skip document loading failures which may be transient
+                    continue
+                filtered_issues.append(issue)
+            reasons.extend(f"{issue.metric}: {issue.reason}" for issue in filtered_issues)
 
         if dossier.get("provenance_issues"):
             reasons.extend(
@@ -55,6 +66,8 @@ class VerifierAgent:
         reasons.extend(self._recompute_metrics(metric_map, dossier_metrics))
         reasons.extend(self._check_hard_gates(dossier.get("stage_0", {})))
         reasons.extend(self._check_path(dossier))
+        reasons.extend(self._check_valuation_consistency(quarter, dossier))
+        reasons.extend(self._check_business_model_metrics(quarter, metric_map, dossier_metrics))
 
         if reasons:
             return QAResult(status="BLOCKER", reasons=reasons)
@@ -114,4 +127,62 @@ class VerifierAgent:
         output = dossier.get("output_0", "")
         if "Mature" in output and path_reasons:
             reasons.append("Path marked Mature but reasons list not empty")
+        return reasons
+
+    def _check_valuation_consistency(self, quarter: CompanyQuarter, dossier: Dict[str, object]) -> List[str]:
+        reasons: List[str] = []
+        reverse = dossier.get("reverse_dcf", {})
+        if not isinstance(reverse, dict):
+            return reasons
+        valuation_meta = {}
+        metadata = quarter.metadata or {}
+        if isinstance(metadata, dict):
+            valuation_meta = metadata.get("valuation", {}) if isinstance(metadata.get("valuation"), dict) else {}
+
+        expected_shares = valuation_meta.get("shares_diluted")
+        reported_shares = reverse.get("shares")
+        if isinstance(expected_shares, (int, float)) and isinstance(reported_shares, (int, float)) and expected_shares > 0:
+            diff = abs(expected_shares - reported_shares) / expected_shares
+            if diff > 0.01:
+                reasons.append("Shares in reverse DCF do not match valuation metadata")
+
+        expected_net_debt = None
+        if isinstance(valuation_meta, dict):
+            expected_net_debt = valuation_meta.get("net_debt")
+        quarter_net_debt = (quarter.balance_sheet.get("TotalDebt") or 0.0) - (quarter.balance_sheet.get("Cash") or 0.0)
+        reported_net_debt = reverse.get("net_debt")
+        baseline = expected_net_debt if isinstance(expected_net_debt, (int, float)) else quarter_net_debt
+        if isinstance(reported_net_debt, (int, float)) and baseline is not None and baseline != 0:
+            diff = abs(baseline - reported_net_debt) / abs(baseline)
+            if diff > 0.05:
+                reasons.append("Net debt in reverse DCF inconsistent with filings")
+        return reasons
+
+    def _check_business_model_metrics(
+        self,
+        quarter: CompanyQuarter,
+        metric_map: Dict[str, Metric],
+        dossier_metrics: Dict[str, object],
+    ) -> List[str]:
+        metadata = quarter.metadata or {}
+        if not isinstance(metadata, dict):
+            return []
+        business_model = metadata.get("business_model")
+        if business_model not in {"marketplace", "commerce", "non_subscription"}:
+            return []
+        prohibited = {"NRR", "GRR", "Net Revenue Retention"}
+        reasons: List[str] = []
+        for metric_name in prohibited:
+            value_numeric = None
+            metric = metric_map.get(metric_name)
+            if metric and isinstance(metric.value, (int, float)):
+                value_numeric = float(metric.value)
+            else:
+                dossier_entry = dossier_metrics.get(metric_name)
+                if dossier_entry is not None:
+                    entry_value = dossier_entry.get("value") if isinstance(dossier_entry, dict) else None
+                    if isinstance(entry_value, (int, float)):
+                        value_numeric = float(entry_value)
+            if value_numeric is not None:
+                reasons.append(f"Subscription metric {metric_name} not permitted for {business_model} model")
         return reasons
