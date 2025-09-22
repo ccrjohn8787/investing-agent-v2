@@ -195,7 +195,8 @@ def verify(
     calc_service: CalculationService = Depends(get_calculation_service),
     report_store: ReportStore = Depends(get_report_store),
 ) -> VerifyResponse:
-    agent = VerifierAgent(calc_service)
+    document_store = get_document_store()
+    agent = VerifierAgent(calc_service, document_store=document_store)
     result = agent.verify(
         quarter=CompanyQuarter(**request.quarter.model_dump()),
         dossier=request.dossier,

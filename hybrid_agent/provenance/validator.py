@@ -9,6 +9,8 @@ from hybrid_agent.ingest.store import DocumentStore
 from hybrid_agent.models import Metric
 from .cache import DocumentCache
 
+_ALLOWED_DOC_TYPES = {"10-K", "20-F", "10-Q", "6-K", "8-K", "Proxy", "IR-Deck", "Transcript"}
+
 
 @dataclass
 class ProvenanceIssue:
@@ -49,8 +51,15 @@ class ProvenanceValidator:
             return []
         try:
             text = self._cache.fetch_text(metric.source_doc_id)
+            document = self._cache.fetch_document(metric.source_doc_id)
         except Exception:
             return [ProvenanceIssue(metric.name, "unable to load source document")]
+
+        if document.doc_type not in _ALLOWED_DOC_TYPES:
+            problems.append(
+                ProvenanceIssue(metric.name, f"non-primary doc type: {document.doc_type}")
+            )
+            return problems
 
         quote = metric.quote.strip()
         if quote and quote not in text:

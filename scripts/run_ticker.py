@@ -158,7 +158,7 @@ def main() -> None:
         "stage_0": analyst_result.get("stage_0", []),
     }
 
-    verifier = VerifierAgent(calc_service)
+    verifier = VerifierAgent(calc_service, document_store=store)
     verifier_result = verifier.verify(quarter, dossier)
 
     payload = {
